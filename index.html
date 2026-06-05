@@ -16,11 +16,9 @@
     --text:#1f2937;
     --text-muted:#5b6677;
     --text-faint:#94a3b8;
-    /* Único color de acento: azul corporativo */
     --brand:#3b5bdb;
     --brand-soft:#eef2ff;
     --brand-deep:#2541a8;
-    /* Colores semánticos — SOLO para prioridad/estado */
     --crit:#f97316;     --crit-bg:#fff7ed;     --crit-border:#fed7aa;
     --alta:#eab308;     --alta-bg:#fefce8;     --alta-border:#fde68a;
     --media:#22c55e;    --media-bg:#f0fdf4;    --media-border:#bbf7d0;
@@ -41,7 +39,6 @@
   ::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px}
   ::-webkit-scrollbar-track{background:transparent}
 
-  /* ---------- TOP BAR ---------- */
   .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 32px;position:sticky;top:0;z-index:10}
   .topbar-inner{display:flex;align-items:center;gap:24px;padding-top:20px}
   .topbar-label{font-size:10px;letter-spacing:.16em;color:var(--text-faint);font-weight:700;text-transform:uppercase;margin-bottom:4px}
@@ -54,7 +51,6 @@
   .kpi-pill .kpi-num{font-size:18px;font-weight:800;color:var(--ink);font-family:'JetBrains Mono',monospace;line-height:1}
   .kpi-pill .kpi-lbl{font-size:9px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-top:3px}
 
-  /* ---------- NAVS ---------- */
   .main-nav{display:flex;gap:0;margin-top:18px}
   .main-nav button{background:none;border:none;padding:12px 28px 14px;text-align:left;border-bottom:2px solid transparent;transition:all .18s;border-radius:0}
   .main-nav button:hover .nav-label{color:var(--text)}
@@ -72,7 +68,6 @@
   .hint{font-size:12px;color:var(--text-muted);margin-bottom:18px;display:flex;align-items:center;gap:6px}
   .hint::before{content:"💡";font-size:13px}
 
-  /* ---------- PHASES ---------- */
   .phase-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .18s,border-color .18s}
   .phase-card:hover{box-shadow:var(--shadow-md);border-color:#d8dce6}
   .phase-header{display:flex;align-items:center;padding:16px 20px;gap:16px;user-select:none;cursor:pointer}
@@ -97,9 +92,9 @@
   .status-sel{border:none;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;outline:none;cursor:pointer;transition:opacity .15s}
   .status-sel:hover{opacity:.85}
 
-  /* ---------- MILESTONES ---------- */
-  .milestone-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:18px 22px;display:grid;grid-template-columns:38px 1fr auto;gap:16px;align-items:start;margin-bottom:12px;box-shadow:var(--shadow-sm);transition:box-shadow .18s,transform .18s}
-  .milestone-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+  .milestone-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:16px;box-shadow:var(--shadow-sm);transition:box-shadow .18s,transform .18s;overflow:hidden}
+  .milestone-card:hover{box-shadow:var(--shadow-md)}
+  .milestone-body{padding:18px 22px;display:grid;grid-template-columns:38px 1fr auto;gap:16px;align-items:start}
   .m-rank{width:38px;height:38px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;font-family:'JetBrains Mono',monospace}
   .m-friction{font-size:11px;color:var(--text-faint);margin-bottom:4px;display:flex;align-items:center;gap:5px}
   .m-name{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.2px;line-height:1.35}
@@ -114,14 +109,47 @@
   .m-pri-sel{background:var(--surface);color:var(--text-muted);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:11px;outline:none;cursor:pointer;font-weight:500}
   .m-pri-sel:hover{border-color:#cbd5e1}
 
-  /* ---------- SUMMARY STRIP ---------- */
+  /* ── TASK LIST ── */
+  .task-section{border-top:1px solid var(--border-soft);background:var(--surface-2)}
+  .task-toggle-btn{width:100%;background:none;border:none;padding:10px 22px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--text-muted);text-align:left;transition:background .15s;border-bottom:1px solid transparent}
+  .task-toggle-btn:hover{background:var(--surface-3);color:var(--text)}
+  .task-toggle-btn.open{color:var(--brand);border-bottom-color:var(--border-soft)}
+  .task-toggle-btn .tcount{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted)}
+  .task-toggle-btn .tcount.has-done{background:#dcfce7;border-color:#bbf7d0;color:#15803d}
+  .task-list-wrap{padding:10px 22px 14px}
+  .task-list{list-style:none}
+  .task-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;margin-bottom:5px;background:var(--surface);border:1px solid var(--border-soft);transition:all .18s;user-select:none}
+  .task-item:last-child{margin-bottom:0}
+  .task-item.dragging{opacity:.4;border-style:dashed}
+  .task-item.drag-over{border-color:var(--brand);background:var(--brand-soft)}
+  .task-drag-handle{color:#cbd5e1;font-size:14px;cursor:grab;padding:2px 4px;border-radius:4px;flex-shrink:0;transition:color .15s}
+  .task-drag-handle:hover{color:var(--text-muted)}
+  .task-drag-handle:active{cursor:grabbing}
+  .task-checkbox{width:16px;height:16px;border-radius:4px;border:1.5px solid #cbd5e1;background:#fff;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s}
+  .task-checkbox.done{background:var(--brand);border-color:var(--brand)}
+  .task-checkbox.done::after{content:'✓';font-size:10px;font-weight:800;color:#fff}
+  .task-checkbox.in-progress{background:#fff7ed;border-color:#f97316}
+  .task-checkbox.in-progress::after{content:'●';font-size:9px;color:#f97316}
+  .task-checkbox.blocked{background:#fef2f2;border-color:#ef4444}
+  .task-checkbox.blocked::after{content:'✕';font-size:10px;font-weight:800;color:#ef4444}
+  .task-text{flex:1;font-size:12px;color:#334155;line-height:1.4;outline:none;border:none;background:transparent;min-width:0}
+  .task-text:focus{color:var(--ink)}
+  .task-text[data-status="Hecho"]{text-decoration:line-through;color:var(--text-faint)}
+  .task-status-sel{border:none;border-radius:12px;padding:3px 8px;font-size:10px;font-weight:700;outline:none;cursor:pointer;flex-shrink:0}
+  .task-del-btn{border:none;background:transparent;color:#e2e8f0;font-size:12px;cursor:pointer;padding:2px 5px;border-radius:4px;flex-shrink:0;transition:all .15s;line-height:1}
+  .task-del-btn:hover{background:#fef2f2;color:#ef4444}
+  .task-add-row{display:flex;gap:8px;margin-top:10px;align-items:center}
+  .task-add-input{flex:1;border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:12px;outline:none;background:#fff;transition:border-color .15s;font-family:inherit}
+  .task-add-input:focus{border-color:var(--brand)}
+  .task-add-btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;transition:opacity .15s}
+  .task-add-btn:hover{opacity:.88}
+
   .summary-strip{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 22px;display:flex;gap:28px;flex-wrap:wrap;margin-top:20px;box-shadow:var(--shadow-sm);align-items:center}
   .summary-item{text-align:center}
   .summary-count{font-size:24px;font-weight:800;font-family:'JetBrains Mono',monospace;line-height:1}
   .summary-label{font-size:11px;color:var(--text-muted);margin-top:4px;font-weight:600}
   .summary-divider{border-left:1px solid var(--border);padding-left:28px}
 
-  /* ---------- JOURNEY ---------- */
   .journey-scroll{overflow-x:auto;padding:8px 4px 12px}
   .journey-track{display:flex;gap:0;min-width:max-content;align-items:flex-start}
   .step-node{width:128px;display:flex;flex-direction:column;align-items:center;gap:7px;user-select:none}
@@ -138,12 +166,10 @@
   .step-dot{width:6px;height:6px;border-radius:50%;opacity:.85}
   .step-connector{width:28px;height:2px;background:var(--border);flex-shrink:0;margin-top:-44px;border-radius:2px}
 
-  /* ---------- LEGEND ---------- */
   .legend-row{display:flex;gap:16px;margin-top:16px;margin-bottom:20px;flex-wrap:wrap;padding:10px 16px;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--r-sm)}
   .legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted);font-weight:500}
   .legend-dot{width:8px;height:8px;border-radius:50%}
 
-  /* ---------- DETAIL PANEL ---------- */
   .detail-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 26px;margin-top:6px;box-shadow:var(--shadow-md)}
   .detail-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
   .detail-icon{font-size:30px}
@@ -166,7 +192,6 @@
   .impr-text{font-size:12px;color:#334155;line-height:1.55}
   .empty-panel{border:1.5px dashed var(--border);border-radius:var(--r-lg);padding:36px;text-align:center;color:#cbd5e1;font-size:13px;margin-top:6px;background:repeating-linear-gradient(45deg,transparent,transparent 10px,#fafbfc 10px,#fafbfc 20px)}
 
-  /* ---------- 360° ---------- */
   .cat-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
   .cat-tab{border:1px solid var(--border);border-radius:10px;padding:9px 18px;font-size:12px;font-weight:700;color:var(--text-muted);background:var(--surface);transition:all .2s;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:7px}
   .cat-tab:hover{transform:translateY(-1px);box-shadow:var(--shadow-md)}
@@ -186,13 +211,14 @@
   .card-360-count{font-size:28px;font-weight:800;line-height:1;font-family:'JetBrains Mono',monospace}
   .card-360-label{font-size:11px;color:var(--text-muted);margin-top:6px;font-weight:600}
 
-  /* ---------- RESPONSIVE ---------- */
   @media (max-width:980px){
     .detail-grid{grid-template-columns:1fr}
     .cards-360{grid-template-columns:repeat(2,1fr)}
     .content{padding:20px}
     .topbar{padding:0 20px}
     .kpi-strip{order:3;width:100%;margin-left:0;margin-top:8px}
+    .milestone-body{grid-template-columns:38px 1fr}
+    .m-controls{flex-direction:row;flex-wrap:wrap}
   }
 </style>
 </head>
@@ -236,7 +262,7 @@
     <div id="phases-container"></div>
   </div>
   <div id="sub-hitos" style="display:none">
-    <div class="hint">Ordenado por prioridad. Muéstrale al negocio cuándo queda resuelta cada fricción.</div>
+    <div class="hint">Ordenado por prioridad. Cada hito tiene su propia lista de tareas con drag & drop para priorizar.</div>
     <div id="milestones-summary" class="summary-strip"></div>
     <div id="milestones-container" style="margin-top:16px"></div>
   </div>
@@ -266,33 +292,24 @@
 </div>
 
 <script>
-// ════════════════════════════════════════════════════════════════
-//  CAPA DE PERSISTENCIA · SUPABASE
-//  Los datos del dashboard se guardan en la nube y se comparten
-//  entre todos los miembros del equipo.
-//  ⚠️ Reemplaza estos dos valores con los de TU proyecto Supabase
-//     (Project Settings → Data API / API Keys):
-// ════════════════════════════════════════════════════════════════
-const SUPABASE_URL = "https://pucejrivdwqrmfxyahei.supabase.co";        // ← pega aquí tu Project URL
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1Y2Vqcml2ZHdxcm1meHlhaGVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5NzI5NzYsImV4cCI6MjA5NTU0ODk3Nn0.b88LPZ3azMHdNm9OXbg_16UWLUB53kRulzYSWwq6WYk";              // ← pega aquí tu anon/public key
+const SUPABASE_URL = "https://pucejrivdwqrmfxyahei.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1Y2Vqcml2ZHdxcm1meHlhaGVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5NzI5NzYsImV4cCI6MjA5NTU0ODk3Nn0.b88LPZ3azMHdNm9OXbg_16UWLUB53kRulzYSWwq6WYk";
 
-let _sb = null;            // cliente Supabase
-let _cloudReady = false;   // ¿se conectó bien?
-let _saveTimer = null;     // para no saturar la red en cada tecla
+let _sb = null;
+let _cloudReady = false;
+let _saveTimer = null;
 
 function _initSupabase(){
   try{
-    if(typeof supabase==='undefined' || SUPABASE_URL.includes('TU-PROYECTO')){
-      console.warn('[Trustonic] Supabase no configurado — modo solo-local (los cambios NO se guardarán).');
-      _showCloudBanner(false);
-      return false;
+    if(typeof supabase==='undefined'||SUPABASE_URL.includes('TU-PROYECTO')){
+      console.warn('[Trustonic] Supabase no configurado — modo solo-local.');
+      _showCloudBanner(false); return false;
     }
     _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     return true;
   }catch(e){ console.error('[Trustonic] Error iniciando Supabase:',e); return false; }
 }
 
-// Carga el estado guardado en la nube. Si no hay nada todavía, guarda el estado inicial.
 async function _loadState(){
   if(!_sb) return;
   try{
@@ -300,42 +317,31 @@ async function _loadState(){
     if(error) throw error;
     const cloud = data && data.data ? data.data : {};
     if(cloud.PHASES && cloud.MILESTONES && cloud.RISKS_360){
-      // Hay datos en la nube → los usamos
-      PHASES = cloud.PHASES;
-      MILESTONES = cloud.MILESTONES;
-      RISKS_360 = cloud.RISKS_360;
-    }else{
-      // Primera vez → subimos el estado inicial que viene en el archivo
+      PHASES = cloud.PHASES; MILESTONES = cloud.MILESTONES; RISKS_360 = cloud.RISKS_360;
+      // migrar tareas si no existen
+      MILESTONES.forEach(m=>{ if(!m.tasks) m.tasks=[]; });
+    } else {
       await _saveStateNow();
     }
-    _cloudReady = true;
-    _showCloudBanner(true);
-    _subscribeRealtime();
-  }catch(e){
-    console.error('[Trustonic] No se pudo cargar de la nube:',e);
-    _showCloudBanner(false);
-  }
+    _cloudReady = true; _showCloudBanner(true); _subscribeRealtime();
+  }catch(e){ console.error('[Trustonic] No se pudo cargar de la nube:',e); _showCloudBanner(false); }
 }
 
-// Guarda YA el estado completo en la nube.
 async function _saveStateNow(){
   if(!_sb) return;
   try{
     const payload = { id:1, data:{ PHASES, MILESTONES, RISKS_360 }, updated_at:new Date().toISOString() };
     const { error } = await _sb.from('dashboard_state').upsert(payload, { onConflict:'id' });
-    if(error) throw error;
-    _flashSaved();
+    if(error) throw error; _flashSaved();
   }catch(e){ console.error('[Trustonic] Error guardando:',e); _flashSaved(false); }
 }
 
-// Guarda con un pequeño retraso (evita escribir en cada pulsación de tecla).
 function saveState(){
   if(!_cloudReady) return;
   clearTimeout(_saveTimer);
   _saveTimer = setTimeout(_saveStateNow, 600);
 }
 
-// Realtime: si otra persona edita, recargamos los datos en pantalla.
 function _subscribeRealtime(){
   if(!_sb) return;
   try{
@@ -343,37 +349,29 @@ function _subscribeRealtime(){
       .on('postgres_changes',{event:'UPDATE',schema:'public',table:'dashboard_state'},payload=>{
         const cloud = payload.new && payload.new.data;
         if(cloud && cloud.PHASES){
-          PHASES = cloud.PHASES; MILESTONES = cloud.MILESTONES; RISKS_360 = cloud.RISKS_360;
-          renderPhases(); renderMilestones && document.getElementById('milestones-container') && renderMilestones();
-          render360();
+          PHASES=cloud.PHASES; MILESTONES=cloud.MILESTONES; RISKS_360=cloud.RISKS_360;
+          MILESTONES.forEach(m=>{ if(!m.tasks) m.tasks=[]; });
+          renderPhases(); render360();
+          if(document.getElementById('sub-hitos').style.display!=='none') renderMilestones();
         }
       }).subscribe();
   }catch(e){ console.warn('[Trustonic] Realtime no disponible:',e); }
 }
 
-// Indicadores visuales de estado de guardado.
 function _showCloudBanner(ok){
   let b=document.getElementById('cloud-banner');
-  if(!b){
-    b=document.createElement('div'); b.id='cloud-banner';
+  if(!b){ b=document.createElement('div'); b.id='cloud-banner';
     b.style.cssText='position:fixed;bottom:14px;right:14px;z-index:9999;font-size:11px;font-weight:700;padding:8px 14px;border-radius:20px;box-shadow:0 4px 12px rgba(0,0,0,.12);font-family:Inter,sans-serif;display:flex;align-items:center;gap:7px;transition:opacity .3s';
-    document.body.appendChild(b);
-  }
+    document.body.appendChild(b); }
   if(ok){ b.style.background='#dcfce7'; b.style.color='#15803d'; b.innerHTML='☁️ Conectado · cambios guardados en la nube'; }
   else { b.style.background='#fef2f2'; b.style.color='#dc2626'; b.innerHTML='⚠️ Sin conexión a la nube · los cambios NO se guardan'; }
 }
 function _flashSaved(ok=true){
   const b=document.getElementById('cloud-banner'); if(!b)return;
   if(ok){ b.innerHTML='💾 Guardado'; b.style.background='#dcfce7'; b.style.color='#15803d';
-    clearTimeout(b._t); b._t=setTimeout(()=>{b.innerHTML='☁️ Conectado · cambios guardados en la nube';},1500); }
+    clearTimeout(b._t); b._t=setTimeout(()=>{ b.innerHTML='☁️ Conectado · cambios guardados en la nube'; },1500); }
   else { b.innerHTML='⚠️ Error al guardar'; b.style.background='#fef2f2'; b.style.color='#dc2626'; }
 }
-
-// PRIORIDAD según imagen:
-// 🟠 Naranja = Crítica (P1 — más urgente)
-// 🟡 Amarillo = Alta (P2)
-// 🟢 Verde = Media (P3)
-// 🔴 Rojo = Baja (P4)
 
 const PRI_CONFIG = {
   "Crítica":{bg:"#fff7ed",text:"#ea580c",dot:"#f97316",emoji:"🟠"},
@@ -386,6 +384,12 @@ const STATUS_CONFIG = {
   "En progreso":{bg:"#eef2ff",text:"#3b5bdb"},
   "Hecho":      {bg:"#dcfce7",text:"#15803d"},
   "Bloqueado":  {bg:"#fef2f2",text:"#dc2626"},
+};
+const TASK_STATUS_CONFIG = {
+  "Pendiente":   {bg:"#f1f5f9",text:"#5b6677",cls:""},
+  "En progreso": {bg:"#fff7ed",text:"#c2410c",cls:"in-progress"},
+  "Hecho":       {bg:"#dcfce7",text:"#15803d",cls:"done"},
+  "Bloqueado":   {bg:"#fef2f2",text:"#dc2626",cls:"blocked"},
 };
 const STATUSES = ["Pendiente","En progreso","Hecho","Bloqueado"];
 const PRI_ORDER = {"Crítica":0,"Alta":1,"Media":2,"Baja":3};
@@ -431,47 +435,42 @@ let PHASES = [
   ]},
 ];
 
-// 21 RF — Prioridades según imagen
-// 🟠 CRÍTICA (naranja): RF 2.8, RF 2.6, RF 2.5, RF 2.15
-// 🟡 ALTA (amarillo): RF 2.13, RF 2.2, RF 2.10, RF 2.3, RF 2.12, RF 2.4, RF 2.9, RF 2.18, RF 2.17, RF 2.16, RF 2.1, RF 2.19, RF 2.20, RF 2.21
-// 🟢 MEDIA (verde): RF 2.7
-// 🔴 BAJA (rojo): RF 2.14, RF 2.11
 let MILESTONES = [
-  {id:"m8", rf:"RF 2.8", friction:"Canal de despachos (JDA/WMS) excluido del flujo Trustonic", name:"Ventas por despacho (JDA/WMS) cubiertas en el flujo Trustonic", when:"~May 2026", phase:"Análisis", priority:"Crítica", impact:5, impactDesc:"Cierra brecha de canal — IMEIs de despacho quedan correctamente registrados", status:"Pendiente"},
-  {id:"m6", rf:"RF 2.6", friction:"Notificaciones enviadas fuera de horario legal — riesgo Ley 2300", name:"Notificaciones a clientes en cumplimiento de Ley 2300", when:"~May 2026", phase:"Análisis", priority:"Crítica", impact:5, impactDesc:"Mitiga riesgo legal activo en iniciativa 10889", status:"Pendiente"},
-  {id:"m5", rf:"RF 2.5", friction:"Anulaciones y devoluciones se gestionan manualmente en Trustonic", name:"Gestión automática de anulaciones, devoluciones y cambios mano a mano", when:"~May 2026", phase:"Análisis", priority:"Crítica", impact:5, impactDesc:"Elimina riesgo de IMEI duplicado o licencia activa en equipo devuelto", status:"Pendiente"},
-  {id:"m15",rf:"RF 2.15",friction:"Gestor IMEI no muestra el estado actual del equipo en Trustonic", name:"Visualización del estado Trustonic desde el Gestor de IMEI", when:"~Jun 2026", phase:"Ejecución", priority:"Crítica", impact:5, impactDesc:"Visibilidad en tiempo real del estado de cada dispositivo sin salir del gestor", status:"Pendiente"},
-  {id:"m13",rf:"RF 2.13",friction:"Confirmación de bloqueo/desbloqueo Trustonic es manual — sin webhook", name:"Recepción de notificaciones de Trustonic mediante Webhook", when:"~Jun 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Elimina verificación manual y garantiza consistencia del estado del dispositivo", status:"Pendiente"},
-  {id:"m2", rf:"RF 2.2", friction:"CRM de Cartera sin visibilidad del estado del celular", name:"Visualización del estado del equipo en el CRM de Cartera", when:"~Jun 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Mejora gestión de cobranza con información en tiempo real", status:"Pendiente"},
-  {id:"m10",rf:"RF 2.10",friction:"Query de bloqueo solo permite buscar por día exacto", name:"Mejora del query: CK_AR_BLOQUEO_CELULAR con rango de fechas", when:"~Jun 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Mejora operación diaria del equipo de cartera y auditoría", status:"Pendiente"},
-  {id:"m3", rf:"RF 2.3", friction:"Peticiones fallidas a Trustonic/IMEI se pierden sin reproceso", name:"Encolamiento y reprocesamiento automático de peticiones fallidas", when:"~Jun 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Garantiza consistencia de registros y elimina pérdidas por timeout", status:"Pendiente"},
-  {id:"m12",rf:"RF 2.12",friction:"Una factura solo puede tener un IMEI — ventas de varios equipos quedan fuera", name:"Registro de múltiples IMEI asociados a una misma factura", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Habilita ventas de múltiples celulares bajo un mismo crédito", status:"Pendiente"},
-  {id:"m4", rf:"RF 2.4", friction:"Documento de Reserva de Dominio se entrega de forma manual o no llega", name:"Envío automático del Documento de Reserva de Dominio al cliente", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Cumplimiento contractual y trazabilidad de entrega del equipo", status:"Pendiente"},
-  {id:"m9", rf:"RF 2.9", friction:"IMEI con formato incorrecto pasa sin validación y genera errores", name:"Validación de IMEI y clasificación de errores (15 dígitos numéricos)", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Previene errores de integración por IMEI mal formado", status:"Pendiente"},
-  {id:"m18",rf:"RF 2.18",friction:"Se envían registros a Trustonic de marcas no compatibles con bloqueo", name:"Envío registro solo de marcas bloqueables vía Trustonic", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Elimina consumo innecesario de la integración y errores por marca no compatible", status:"Pendiente"},
-  {id:"m17",rf:"RF 2.17",friction:"Cargue de IMEI es uno a uno — ineficiente para grandes volúmenes", name:"Cargue masivo de registros en el Gestor de IMEI (Excel/CSV)", when:"~Ago 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Reduce tiempo operativo en migraciones y activaciones masivas", status:"Pendiente"},
-  {id:"m16",rf:"RF 2.16",friction:"Eliminación de registros en Gestor IMEI sin trazabilidad ni auditoría", name:"Inactivación masiva de registros desde el GESTOR con trazabilidad", when:"~Ago 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Garantiza integridad del historial y cumplimiento de auditoría interna", status:"Pendiente"},
-  {id:"m1", rf:"RF 2.1", friction:"Inconsistencia en número de factura entre sistemas (11 vs 14 dígitos)", name:"Manejo unificado de facturas con 14 dígitos en todos los sistemas", when:"~Ago 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Elimina errores de trazabilidad entre PeopleSoft, 20 Min y Gestor IMEI", status:"Pendiente"},
-  {id:"m19",rf:"RF 2.19",friction:"Se ejecutan acciones sobre equipos sin validar su estado actual en Trustonic", name:"Validación del estado Trustonic antes de ejecutar una acción", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Evita acciones inválidas y previene inconsistencias entre Gestor y Trustonic", status:"Pendiente"},
-  {id:"m20",rf:"RF 2.20",friction:"No se distingue si una acción fue ejecutada por API o de forma manual", name:"Registro del origen de las acciones (API / Manual) en el Gestor", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Mejora trazabilidad y auditoría — distingue automatización de intervención humana", status:"Pendiente"},
-  {id:"m21",rf:"RF 2.21",friction:"Las observaciones manuales no son visibles en todas las vistas ni reportes", name:"Visibilidad de observaciones manuales en pantallas y reportes", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Garantiza que el contexto agregado por usuarios sea visible en toda la operación", status:"Pendiente"},
-  {id:"m7", rf:"RF 2.7", friction:"Datos del Gestor IMEI no disponibles para reportes de negocio", name:"Disponibilizar datos del Gestor de IMEI hacia Power BI", when:"~Sep 2026", phase:"Estabilización", priority:"Media", impact:3, impactDesc:"Visibilidad de estados, mora, bloqueos y liberaciones para el negocio", status:"Pendiente"},
-  {id:"m14",rf:"RF 2.14",friction:"Integraciones operan con cuenta personal — riesgo de seguridad", name:"Uso de cuenta de servicio genérica para las integraciones", when:"~Sep 2026", phase:"Estabilización", priority:"Baja", impact:2, impactDesc:"Mejora seguridad y trazabilidad — elimina dependencia de usuario personal", status:"Pendiente"},
-  {id:"m11",rf:"RF 2.11",friction:"Proceso People notifica clientes no registrados en Gestor IMEI", name:"Ajuste del proceso automático en PeopleSoft", when:"~Sep 2026", phase:"Estabilización", priority:"Baja", impact:2, impactDesc:"Elimina notificaciones erróneas y reduce ruido en el proceso automático", status:"Pendiente"},
+  {id:"m8", rf:"RF 2.8", friction:"Canal de despachos (JDA/WMS) excluido del flujo Trustonic", name:"Ventas por despacho (JDA/WMS) cubiertas en el flujo Trustonic", when:"~May 2026", phase:"Análisis", priority:"Crítica", impact:5, impactDesc:"Cierra brecha de canal — IMEIs de despacho quedan correctamente registrados", status:"Pendiente", tasks:[]},
+  {id:"m6", rf:"RF 2.6", friction:"Notificaciones enviadas fuera de horario legal — riesgo Ley 2300", name:"Notificaciones a clientes en cumplimiento de Ley 2300", when:"~May 2026", phase:"Análisis", priority:"Crítica", impact:5, impactDesc:"Mitiga riesgo legal activo en iniciativa 10889", status:"Pendiente", tasks:[]},
+  {id:"m5", rf:"RF 2.5", friction:"Anulaciones y devoluciones se gestionan manualmente en Trustonic", name:"Gestión automática de anulaciones, devoluciones y cambios mano a mano", when:"~May 2026", phase:"Análisis", priority:"Crítica", impact:5, impactDesc:"Elimina riesgo de IMEI duplicado o licencia activa en equipo devuelto", status:"Pendiente", tasks:[]},
+  {id:"m15",rf:"RF 2.15",friction:"Gestor IMEI no muestra el estado actual del equipo en Trustonic", name:"Visualización del estado Trustonic desde el Gestor de IMEI", when:"~Jun 2026", phase:"Ejecución", priority:"Crítica", impact:5, impactDesc:"Visibilidad en tiempo real del estado de cada dispositivo sin salir del gestor", status:"Pendiente", tasks:[]},
+  {id:"m13",rf:"RF 2.13",friction:"Confirmación de bloqueo/desbloqueo Trustonic es manual — sin webhook", name:"Recepción de notificaciones de Trustonic mediante Webhook", when:"~Jun 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Elimina verificación manual y garantiza consistencia del estado del dispositivo", status:"Pendiente", tasks:[]},
+  {id:"m2", rf:"RF 2.2", friction:"CRM de Cartera sin visibilidad del estado del celular", name:"Visualización del estado del equipo en el CRM de Cartera", when:"~Jun 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Mejora gestión de cobranza con información en tiempo real", status:"Pendiente", tasks:[]},
+  {id:"m10",rf:"RF 2.10",friction:"Query de bloqueo solo permite buscar por día exacto", name:"Mejora del query: CK_AR_BLOQUEO_CELULAR con rango de fechas", when:"~Jun 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Mejora operación diaria del equipo de cartera y auditoría", status:"Pendiente", tasks:[]},
+  {id:"m3", rf:"RF 2.3", friction:"Peticiones fallidas a Trustonic/IMEI se pierden sin reproceso", name:"Encolamiento y reprocesamiento automático de peticiones fallidas", when:"~Jun 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Garantiza consistencia de registros y elimina pérdidas por timeout", status:"Pendiente", tasks:[]},
+  {id:"m12",rf:"RF 2.12",friction:"Una factura solo puede tener un IMEI — ventas de varios equipos quedan fuera", name:"Registro de múltiples IMEI asociados a una misma factura", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Habilita ventas de múltiples celulares bajo un mismo crédito", status:"Pendiente", tasks:[]},
+  {id:"m4", rf:"RF 2.4", friction:"Documento de Reserva de Dominio se entrega de forma manual o no llega", name:"Envío automático del Documento de Reserva de Dominio al cliente", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Cumplimiento contractual y trazabilidad de entrega del equipo", status:"Pendiente", tasks:[]},
+  {id:"m9", rf:"RF 2.9", friction:"IMEI con formato incorrecto pasa sin validación y genera errores", name:"Validación de IMEI y clasificación de errores (15 dígitos numéricos)", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Previene errores de integración por IMEI mal formado", status:"Pendiente", tasks:[]},
+  {id:"m18",rf:"RF 2.18",friction:"Se envían registros a Trustonic de marcas no compatibles con bloqueo", name:"Envío registro solo de marcas bloqueables vía Trustonic", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Elimina consumo innecesario de la integración y errores por marca no compatible", status:"Pendiente", tasks:[]},
+  {id:"m17",rf:"RF 2.17",friction:"Cargue de IMEI es uno a uno — ineficiente para grandes volúmenes", name:"Cargue masivo de registros en el Gestor de IMEI (Excel/CSV)", when:"~Ago 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Reduce tiempo operativo en migraciones y activaciones masivas", status:"Pendiente", tasks:[]},
+  {id:"m16",rf:"RF 2.16",friction:"Eliminación de registros en Gestor IMEI sin trazabilidad ni auditoría", name:"Inactivación masiva de registros desde el GESTOR con trazabilidad", when:"~Ago 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Garantiza integridad del historial y cumplimiento de auditoría interna", status:"Pendiente", tasks:[]},
+  {id:"m1", rf:"RF 2.1", friction:"Inconsistencia en número de factura entre sistemas (11 vs 14 dígitos)", name:"Manejo unificado de facturas con 14 dígitos en todos los sistemas", when:"~Ago 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Elimina errores de trazabilidad entre PeopleSoft, 20 Min y Gestor IMEI", status:"Pendiente", tasks:[]},
+  {id:"m19",rf:"RF 2.19",friction:"Se ejecutan acciones sobre equipos sin validar su estado actual en Trustonic", name:"Validación del estado Trustonic antes de ejecutar una acción", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:4, impactDesc:"Evita acciones inválidas y previene inconsistencias entre Gestor y Trustonic", status:"Pendiente", tasks:[]},
+  {id:"m20",rf:"RF 2.20",friction:"No se distingue si una acción fue ejecutada por API o de forma manual", name:"Registro del origen de las acciones (API / Manual) en el Gestor", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Mejora trazabilidad y auditoría — distingue automatización de intervención humana", status:"Pendiente", tasks:[]},
+  {id:"m21",rf:"RF 2.21",friction:"Las observaciones manuales no son visibles en todas las vistas ni reportes", name:"Visibilidad de observaciones manuales en pantallas y reportes", when:"~Jul 2026", phase:"Ejecución", priority:"Alta", impact:3, impactDesc:"Garantiza que el contexto agregado por usuarios sea visible en toda la operación", status:"Pendiente", tasks:[]},
+  {id:"m7", rf:"RF 2.7", friction:"Datos del Gestor IMEI no disponibles para reportes de negocio", name:"Disponibilizar datos del Gestor de IMEI hacia Power BI", when:"~Sep 2026", phase:"Estabilización", priority:"Media", impact:3, impactDesc:"Visibilidad de estados, mora, bloqueos y liberaciones para el negocio", status:"Pendiente", tasks:[]},
+  {id:"m14",rf:"RF 2.14",friction:"Integraciones operan con cuenta personal — riesgo de seguridad", name:"Uso de cuenta de servicio genérica para las integraciones", when:"~Sep 2026", phase:"Estabilización", priority:"Baja", impact:2, impactDesc:"Mejora seguridad y trazabilidad — elimina dependencia de usuario personal", status:"Pendiente", tasks:[]},
+  {id:"m11",rf:"RF 2.11",friction:"Proceso People notifica clientes no registrados en Gestor IMEI", name:"Ajuste del proceso automático en PeopleSoft", when:"~Sep 2026", phase:"Estabilización", priority:"Baja", impact:2, impactDesc:"Elimina notificaciones erróneas y reduce ruido en el proceso automático", status:"Pendiente", tasks:[]},
 ];
 
 const STEPS = [
   {id:1,icon:"🏪",name:"Atención en tienda",actor:"Asesor",desc:"El asesor recibe al cliente y presenta las opciones: Crédito 20 Min o Credicelular.",risks:[{type:"operativo",text:"El asesor puede no ofrecer Credicelular si no lo conoce bien o no tiene incentivo.",priority:"Alta"},{type:"negocio",text:"Si el asesor no califica bien la necesidad, el cliente termina en el flujo incorrecto.",priority:"Media"}],rfRefs:[]},
-  {id:2,icon:"📱",name:"Selección de producto",actor:"Asesor + Sistema",desc:"Asesor captura marca del celular. Dato alimenta el motor de riesgo específico de Credicelular.",risks:[{type:"tecnico",text:"Motor de riesgo Credicelular con modelo de aprobación/negación subóptimo — mejora pendiente.",priority:"Crítica"},{type:"operativo",text:"Error en captura de marca puede distorsionar el scoring del cliente.",priority:"Alta"}],rfRefs:[]},
-  {id:3,icon:"⚖️",name:"Estudio de crédito",actor:"Sistema (Motor)",desc:"Evaluación automática: ✅ Aprobado → habilita facturación | ❌ Negado → fin del flujo.",risks:[{type:"tecnico",text:"Falsos negativos en el motor reducen tasa de aprobación y oportunidades de venta.",priority:"Crítica"},{type:"negocio",text:"Sin retroalimentación clara al cliente negado, se pierde la relación comercial.",priority:"Alta"}],rfRefs:[]},
-  {id:4,icon:"🧾",name:"Facturación en caja",actor:"Cajero + Sistema",desc:"El cajero genera la factura. El sistema valida que el cliente pueda facturar ese producto específico.",risks:[{type:"tecnico",text:"El control de validación puede no estar sincronizado si hay latencia con el motor.",priority:"Alta"},{type:"operativo",text:"Error del cajero al seleccionar producto distinto al aprobado en el estudio.",priority:"Media"}],rfRefs:["RF 2.12","RF 2.1"]},
-  {id:5,icon:"📦",name:"Salida de inventario",actor:"Operario",desc:"Registro de salida del equipo. Punto crítico: en algunos casos se omite la herramienta correcta.",risks:[{type:"operativo",text:"🔴 CRÍTICO: Salida no registrada en herramienta correcta — no se notifica al proveedor ni al sistema interno.",priority:"Crítica"},{type:"negocio",text:"Desincronización de inventario genera pérdidas contables y problemas de cobranza.",priority:"Crítica"},{type:"tecnico",text:"Sin validación obligatoria en sistema, el error humano no tiene freno de control.",priority:"Alta"}],rfRefs:["RF 2.8","RF 2.3","RF 2.9","RF 2.18"]},
-  {id:6,icon:"🤝",name:"Entrega del equipo",actor:"Asesor / Bodega",desc:"Entrega física del dispositivo al cliente. Último punto de contacto presencial.",risks:[{type:"operativo",text:"Entrega antes de confirmar registro de inventario completo.",priority:"Alta"},{type:"negocio",text:"Sin acuse de recibo digital, no hay trazabilidad en caso de disputa.",priority:"Media"}],rfRefs:["RF 2.5","RF 2.4"]},
-  {id:7,icon:"🔔",name:"Notificación y cobranza",actor:"Sistema + Cobranza",desc:"23 días de mora → notificación al cliente. +30 días → se activa el proceso de bloqueo del dispositivo vía Trustonic.",risks:[{type:"negocio",text:"El canal de notificación puede no llegar al cliente (SMS bloqueado, correo no leído).",priority:"Alta"},{type:"operativo",text:"Sin escalada gradual de comunicación, el cliente llega al bloqueo sin advertencia efectiva.",priority:"Alta"}],rfRefs:["RF 2.6","RF 2.2","RF 2.10","RF 2.11"]},
-  {id:8,icon:"🔒",name:"Bloqueo / Desbloqueo",actor:"Trustonic + Sistema",desc:"Trustonic ejecuta el bloqueo remoto del dispositivo por mora. El desbloqueo se activa según canal de pago.",risks:[{type:"tecnico",text:"Fallo en la instrucción de bloqueo a Trustonic — el dispositivo no queda bloqueado pese a la mora.",priority:"Crítica"},{type:"tecnico",text:"Fallo en el desbloqueo automático tras confirmación de pago — cliente pagó pero el equipo sigue bloqueado.",priority:"Crítica"},{type:"negocio",text:"Cliente bloqueado que paga en punto físico espera 48h — genera fricción y quejas en tienda.",priority:"Media"}],rfRefs:["RF 2.13","RF 2.3","RF 2.19"]},
-  {id:9,icon:"💳",name:"Canales de pago",actor:"Cliente",desc:"Pago en línea (web) → desbloqueo inmediato. Pago en punto físico → hasta 48h (establecido por ley).",risks:[{type:"negocio",text:"Cliente que paga en punto físico queda 48h bloqueado — expectativa vs realidad genera quejas.",priority:"Media"},{type:"tecnico",text:"Si el pago en línea falla o no se procesa correctamente, el desbloqueo no se activa.",priority:"Alta"}],rfRefs:[]},
-  {id:10,icon:"🔓",name:"Liberación del Equipo",actor:"Sistema + Trustonic",desc:"Cancelación total de la deuda → liberación del dispositivo y del cupo. El cupo puede ser rotativo o no rotativo.",risks:[{type:"tecnico",text:"Error en clasificación rotativo/no rotativo desde el estudio genera expectativas incorrectas.",priority:"Alta"},{type:"negocio",text:"Cliente no sabe que tiene cupo disponible nuevamente — se pierde oportunidad de recompra.",priority:"Alta"},{type:"tecnico",text:"La liberación del dispositivo en Trustonic no se ejecuta si hay fallo en la integración.",priority:"Crítica"}],rfRefs:[]},
-  {id:11,icon:"📊",name:"Monitoreo",actor:"Equipo técnico / Negocio",desc:"Capa de visibilidad transversal al flujo. Conexión Gestor IMEI → Power BI para seguimiento en tiempo real.",risks:[{type:"tecnico",text:"Sin monitoreo centralizado, los fallos en Trustonic o el gestor de IMEI no se detectan a tiempo.",priority:"Crítica"},{type:"negocio",text:"Sin visibilidad de KPIs (aprobaciones, mora, bloqueos, liberaciones) el negocio no puede actuar.",priority:"Alta"},{type:"operativo",text:"Datos desactualizados o inconsistentes entre el gestor de IMEI y los sistemas internos.",priority:"Alta"}],rfRefs:["RF 2.15","RF 2.17","RF 2.16","RF 2.7","RF 2.14","RF 2.20","RF 2.21"]},
+  {id:2,icon:"📱",name:"Selección de producto",actor:"Asesor + Sistema",desc:"Asesor captura marca del celular.",risks:[{type:"tecnico",text:"Motor de riesgo Credicelular con modelo de aprobación/negación subóptimo.",priority:"Crítica"},{type:"operativo",text:"Error en captura de marca puede distorsionar el scoring del cliente.",priority:"Alta"}],rfRefs:[]},
+  {id:3,icon:"⚖️",name:"Estudio de crédito",actor:"Sistema (Motor)",desc:"Evaluación automática: ✅ Aprobado → habilita facturación | ❌ Negado → fin del flujo.",risks:[{type:"tecnico",text:"Falsos negativos en el motor reducen tasa de aprobación.",priority:"Crítica"},{type:"negocio",text:"Sin retroalimentación clara al cliente negado, se pierde la relación comercial.",priority:"Alta"}],rfRefs:[]},
+  {id:4,icon:"🧾",name:"Facturación en caja",actor:"Cajero + Sistema",desc:"El cajero genera la factura.",risks:[{type:"tecnico",text:"El control de validación puede no estar sincronizado si hay latencia.",priority:"Alta"},{type:"operativo",text:"Error del cajero al seleccionar producto distinto al aprobado.",priority:"Media"}],rfRefs:["RF 2.12","RF 2.1"]},
+  {id:5,icon:"📦",name:"Salida de inventario",actor:"Operario",desc:"Registro de salida del equipo.",risks:[{type:"operativo",text:"🔴 CRÍTICO: Salida no registrada en herramienta correcta.",priority:"Crítica"},{type:"negocio",text:"Desincronización de inventario genera pérdidas contables.",priority:"Crítica"},{type:"tecnico",text:"Sin validación obligatoria en sistema, el error humano no tiene freno.",priority:"Alta"}],rfRefs:["RF 2.8","RF 2.3","RF 2.9","RF 2.18"]},
+  {id:6,icon:"🤝",name:"Entrega del equipo",actor:"Asesor / Bodega",desc:"Entrega física del dispositivo al cliente.",risks:[{type:"operativo",text:"Entrega antes de confirmar registro de inventario completo.",priority:"Alta"},{type:"negocio",text:"Sin acuse de recibo digital, no hay trazabilidad en caso de disputa.",priority:"Media"}],rfRefs:["RF 2.5","RF 2.4"]},
+  {id:7,icon:"🔔",name:"Notificación y cobranza",actor:"Sistema + Cobranza",desc:"23 días de mora → notificación al cliente. +30 días → se activa el proceso de bloqueo.",risks:[{type:"negocio",text:"El canal de notificación puede no llegar al cliente.",priority:"Alta"},{type:"operativo",text:"Sin escalada gradual de comunicación, el cliente llega al bloqueo sin advertencia.",priority:"Alta"}],rfRefs:["RF 2.6","RF 2.2","RF 2.10","RF 2.11"]},
+  {id:8,icon:"🔒",name:"Bloqueo / Desbloqueo",actor:"Trustonic + Sistema",desc:"Trustonic ejecuta el bloqueo remoto del dispositivo por mora.",risks:[{type:"tecnico",text:"Fallo en la instrucción de bloqueo a Trustonic.",priority:"Crítica"},{type:"tecnico",text:"Fallo en el desbloqueo automático tras confirmación de pago.",priority:"Crítica"},{type:"negocio",text:"Cliente bloqueado que paga en punto físico espera 48h.",priority:"Media"}],rfRefs:["RF 2.13","RF 2.3","RF 2.19"]},
+  {id:9,icon:"💳",name:"Canales de pago",actor:"Cliente",desc:"Pago en línea → desbloqueo inmediato. Pago en punto físico → hasta 48h.",risks:[{type:"negocio",text:"Cliente que paga en punto físico queda 48h bloqueado.",priority:"Media"},{type:"tecnico",text:"Si el pago en línea falla, el desbloqueo no se activa.",priority:"Alta"}],rfRefs:[]},
+  {id:10,icon:"🔓",name:"Liberación del Equipo",actor:"Sistema + Trustonic",desc:"Cancelación total de la deuda → liberación del dispositivo y del cupo.",risks:[{type:"tecnico",text:"Error en clasificación rotativo/no rotativo genera expectativas incorrectas.",priority:"Alta"},{type:"negocio",text:"Cliente no sabe que tiene cupo disponible nuevamente.",priority:"Alta"},{type:"tecnico",text:"La liberación del dispositivo en Trustonic no se ejecuta si hay fallo en la integración.",priority:"Crítica"}],rfRefs:[]},
+  {id:11,icon:"📊",name:"Monitoreo",actor:"Equipo técnico / Negocio",desc:"Capa de visibilidad transversal al flujo.",risks:[{type:"tecnico",text:"Sin monitoreo centralizado, los fallos no se detectan a tiempo.",priority:"Crítica"},{type:"negocio",text:"Sin visibilidad de KPIs el negocio no puede actuar.",priority:"Alta"},{type:"operativo",text:"Datos desactualizados o inconsistentes entre el gestor de IMEI y los sistemas internos.",priority:"Alta"}],rfRefs:["RF 2.15","RF 2.17","RF 2.16","RF 2.7","RF 2.14","RF 2.20","RF 2.21"]},
 ];
 
 let RISKS_360 = [
@@ -494,31 +493,27 @@ let RISKS_360 = [
     {risk:"Baja visibilidad de métricas clave (mora, aprobación, bloqueos)",impact:"Alto",prob:"Alta",mit:"Dashboard de seguimiento en tiempo real para negocio"},
   ]},
   {category:"Mejoras Fase II",color:"#3b5bdb",icon:"🚀",items:[
-    // 🟠 CRÍTICA — P1
-    {rf:"RF 2.8", mejora:"Extensión del alcance a ventas por despachos (JDA / WMS)",                  flujo:"📦 Salida de inventario",          impacto:"Alto",prioridad:"Baja",responsable:"Sistema",          inicio:"01/05/2026",fin:"31/05/2026",mitigacion:"La solución debe contemplar los despachos de equipos celulares gestionados a través de JDA (WMS), de forma equivalente a como opera con DigiStock. Todos los canales de venta, incluyendo la modalidad de cliente recoge, deben operar bajo los mismos lineamientos de registro, trazabilidad y control del IMEI.",status:"Pendiente"},
-    {rf:"RF 2.6", mejora:"Cumplimiento de la Ley 2300 en el envío de notificaciones",                 flujo:"🔔 Notificación y cobranza",       impacto:"Crítico",prioridad:"Alta",responsable:"PeopleSoft",      inicio:"01/05/2026",fin:"30/06/2026",mitigacion:"Todas las notificaciones hacia el cliente (SMS, correo) deben enviarse únicamente dentro de los horarios y días permitidos por la Ley 2300. Las notificaciones fuera de horario deben encolarse y despacharse automáticamente en el siguiente momento habilitado. El sistema debe dejar trazabilidad de cada notificación enviada o encolada.",status:"Pendiente"},
-    {rf:"RF 2.5", mejora:"Gestión automática de anulaciones, devoluciones y cambios mano a mano",     flujo:"🤝 Entrega del equipo",            impacto:"Crítico",prioridad:"Crítica",responsable:"Célula Digi",          inicio:"01/05/2026",fin:"31/05/2026",mitigacion:"Ante una anulación o devolución, el sistema debe ejecutar la baja y liberación de la licencia del equipo en Trustonic de forma automática. Para cambios mano a mano, el flujo debe primero dar de baja el equipo que retorna el cliente y luego enrolar el nuevo dispositivo entregado, respetando ese orden de operaciones.",status:"Pendiente"},
-    {rf:"RF 2.15",mejora:"Visualización del estado actual del equipo en Trustonic desde el Gestor de IMEI",flujo:"📊 Monitoreo",               impacto:"Crítico",prioridad:"Crítica",responsable:"Gestor de IMEIs",          inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"El Gestor de IMEI debe mostrar el estado actual de cada equipo en Trustonic (activo, bloqueado, desbloqueado, pendiente, entre otros), consultado a través de la integración con el proveedor.",status:"Pendiente"},
-    // 🟡 ALTA — P2
-    {rf:"RF 2.13",mejora:"Recepción de notificaciones de Trustonic mediante Webhook",                  flujo:"🔒 Bloqueo / Desbloqueo",          impacto:"Alto",   prioridad:"Baja",   responsable:"Arquitectura",          inicio:"01/06/2026",fin:"31/07/2026",mitigacion:"Implementar un mecanismo de recepción de notificaciones entrantes desde Trustonic (Webhook), que permita conocer de forma asíncrona el estado de las acciones procesadas por el proveedor.",status:"Pendiente"},
-    {rf:"RF 2.2", mejora:"Visualización del estado del equipo celular en el CRM de Cartera",          flujo:"🔔 Notificación y cobranza",       impacto:"Alto",   prioridad:"Alta",   responsable:"Celula CRM",              inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"El CRM de Cartera debe mostrar el estado actual del equipo celular asociado a una factura (estado previo a Trustonic). Esta funcionalidad aplica únicamente para facturas con equipos celulares y debe estar disponible para los agentes de cartera durante su gestión.",status:"Pendiente"},
-    {rf:"RF 2.10",mejora:"Mejora del query: CK_AR_BLOQUEO_CELULAR (filtro por rango de fechas)",      flujo:"🔔 Notificación y cobranza",       impacto:"Medio",  prioridad:"Baja",   responsable:"PeopleSoft",              inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"El query CK_AR_BLOQUEO_CELULAR debe permitir consultar registros por un rango de fechas (fecha inicio – fecha fin), reemplazando el filtro actual que solo permite búsqueda por día exacto.",status:"Pendiente"},
-    {rf:"RF 2.3", mejora:"Encolamiento y reprocesamiento automático de peticiones fallidas",          flujo:"📦 Salida de inventario · 🔒 Bloqueo",impacto:"Alto", prioridad:"Crítica",   responsable:"Célula Digi",          inicio:"01/06/2026",fin:"31/07/2026",mitigacion:"Cuando una petición entre sistemas falle por indisponibilidad o error transitorio, el sistema debe encolarla automáticamente y reprocesarla una vez el servicio se restablezca. Se deben diferenciar los errores transitorios (reintentables) de los errores definitivos (no reintentables), y garantizar que no se generen duplicidades en el reproceso.",status:"Pendiente"},
-    {rf:"RF 2.12",mejora:"Registro de múltiples IMEI asociados a una misma factura",                  flujo:"🧾 Facturación / Sistemas",        impacto:"Medio",  prioridad:"Media",   responsable:"Célula Digi",          inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"El sistema debe permitir que una factura tenga asociados más de un IMEI (varios equipos celulares por factura). Esta relación debe reflejarse en todos los módulos involucrados y cada IMEI debe poder gestionarse de forma independiente.",status:"Pendiente"},
-    {rf:"RF 2.4", mejora:"Envío automático del Documento de Reserva de Dominio al cliente",           flujo:"🤝 Entrega del equipo",            impacto:"Alto",   prioridad:"Alta",   responsable:"Sistema",          inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"Una vez confirmada la entrega del equipo al cliente, el sistema debe generar y enviar automáticamente el Documento de Reserva de Dominio por el canal correspondiente. El documento debe incluir la información del equipo, el plan y la confirmación de financiación 20 Minutos. Se debe tener en cuenta los cambios, devoluciones.",status:"Pendiente"},
-    {rf:"RF 2.9", mejora:"Validación de IMEI y clasificación de errores (15 dígitos numéricos)",      flujo:"📦 Salida de inventario",          impacto:"Alto",   prioridad:"Alta",   responsable:"Célula Digi",          inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"El IMEI ingresado debe corresponder a un valor numérico de exactamente 15 dígitos y que no contenga letras antes de procesar la transacción. Se deben clasificar los errores para diferenciar los transitorios (reintentables) de los definitivos.",status:"Pendiente"},
-    {rf:"RF 2.18",mejora:"Envío registro solo de marcas que se pueden bloquear vía Trustonic",        flujo:"📦 Salida de inventario",          impacto:"Alto",   prioridad:"Alta",   responsable:"Célula Digi",          inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"Filtrar el envío a Trustonic para registro únicamente las marcas compatibles con bloqueo. Las marcas que no apliquen no deben generar consumo de la integración ni reintentos.",status:"Pendiente"},
-    {rf:"RF 2.17",mejora:"Cargue masivo de registros en el Gestor de IMEI",                          flujo:"📊 Monitoreo",                     impacto:"Medio",  prioridad:"Media",   responsable:"Gestor de IMEIs",          inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"El Gestor de IMEI debe permitir cargar múltiples registros simultáneamente a través de un archivo (Excel o CSV), incluyendo todos los campos disponibles en el registro individual.",status:"Pendiente"},
-    {rf:"RF 2.16",mejora:"Eliminación controlada (inactivación masiva) de registros en el Gestor de IMEI",flujo:"📊 Monitoreo",               impacto:"Medio",   prioridad:"Media",   responsable:"Gestor de IMEIs",          inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"El Gestor de IMEI debe permitir eliminar registros de forma lógica (sin borrado físico), conservando el historial para auditoría. Toda eliminación debe requerir una justificación obligatoria por parte del usuario y registrar el identificador de quien ejecutó la acción y la fecha y hora.",status:"Pendiente"},
-    {rf:"RF 2.1", mejora:"Consistencia de la factura con 14 dígitos en los sistemas de información",  flujo:"🧾 Facturación / Sistemas",        impacto:"Bajo",   prioridad:"Baja",   responsable:"Célula Digi / PeopleSoft",inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"Todos los sistemas involucrados (PeopleSoft, página 20 Minutos y Gestor de IMEI) deben operar con el número completo de factura de 14 dígitos. Se debe garantizar la trazabilidad de registros históricos creados con 11 dígitos, asegurando que la información no se pierda y que los sistemas mantengan coherencia entre sí.",status:"Pendiente"},
-    {rf:"RF 2.19",mejora:"Validación del estado en Trustonic antes de ejecutar una acción",            flujo:"🔒 Acciones",          impacto:"Alto",   prioridad:"Alta",   responsable:"Gestor de IMEIs",          inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"Antes de ejecutar cualquier acción sobre un equipo, el Gestor debe consultar y guardar el estado actual del equipo en Trustonic. Si el estado no es compatible con la acción solicitada, esta no debe ejecutarse y debe quedar pendiente para reintento automático. No se permite ejecutar una acción sobre un equipo cuyo estado en Trustonic no lo permita.",status:"Pendiente"},
-    {rf:"RF 2.20",mejora:"Registro del origen de las acciones en el Gestor de IMEI (API vs Manual)",   flujo:"📊 Monitoreo",                     impacto:"Alto",  prioridad:"Crítica",   responsable:"Gestor de IMEIs",          inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"Cada acción registrada en el Gestor debe indicar si fue ejecutada a través de la API (automático) o de forma manual por un usuario desde la aplicación. Este dato debe quedar visible en el historial del equipo, en las pantallas del Gestor y en los reportes exportables.",status:"Pendiente"},
-    {rf:"RF 2.21",mejora:"Visibilidad de observaciones manuales en todas las vistas y reportes",       flujo:"📊 Monitoreo",                     impacto:"Bajo",  prioridad:"Bajo",   responsable:"Gestor de IMEIs",          inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"Cuando un usuario diligencie el campo de observaciones de forma manual, esta información debe estar disponible en las pantallas del Gestor y en todos los reportes y exportaciones. Las observaciones manuales deben diferenciarse de las generadas automáticamente por el sistema.",status:"Pendiente"},
-    // 🟢 MEDIA — P3
-    {rf:"RF 2.7", mejora:"Disponibilización de datos del Gestor de IMEI hacia Power BI",              flujo:"📊 Monitoreo",                     impacto:"Alto",   prioridad:"Alta",  responsable:"Arquitectura / Gestor de IMEIs",          inicio:"01/07/2026",fin:"31/08/2026",mitigacion:"Los datos del Gestor de IMEI deben estar disponibles para ser consumidos desde Power BI. La información debe mantenerse actualizada y el acceso debe estar restringido a los perfiles autorizados.",status:"Pendiente"},
-    // 🔴 BAJA — P4
-    {rf:"RF 2.14",mejora:"Uso de cuenta de servicio genérica para las integraciones",                 flujo:"📊 Monitoreo",                     impacto:"Medio",  prioridad:"Baja",   responsable:"Sistema",         inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"Las integraciones entre los sistemas involucrados (DigiStock, Gestor de IMEI, Trustonic) deben operar con una cuenta de servicio genérica, en reemplazo de la cuenta personal laboral utilizada actualmente.",status:"Pendiente"},
-    {rf:"RF 2.11",mejora:"Ajuste del proceso People ante clientes no registrados en el Gestor de IMEI",flujo:"🔔 Notificación y cobranza",      impacto:"Medio",  prioridad:"Baja",   responsable:"Sistema",              inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"El proceso automático de Notificación desde People solo debe gestionar y ejecutar acciones sobre los clientes y equipos que apliquen según sus marcas en el sistema, excluyendo automáticamente los que no cumplan los criterios.",status:"Pendiente"},
+    {rf:"RF 2.8", mejora:"Extensión del alcance a ventas por despachos (JDA / WMS)",flujo:"📦 Salida de inventario",impacto:"Alto",prioridad:"Baja",responsable:"Sistema",inicio:"01/05/2026",fin:"31/05/2026",mitigacion:"La solución debe contemplar los despachos de equipos celulares gestionados a través de JDA (WMS).",status:"Pendiente"},
+    {rf:"RF 2.6", mejora:"Cumplimiento de la Ley 2300 en el envío de notificaciones",flujo:"🔔 Notificación y cobranza",impacto:"Crítico",prioridad:"Alta",responsable:"PeopleSoft",inicio:"01/05/2026",fin:"30/06/2026",mitigacion:"Todas las notificaciones deben enviarse únicamente dentro de los horarios y días permitidos por la Ley 2300.",status:"Pendiente"},
+    {rf:"RF 2.5", mejora:"Gestión automática de anulaciones, devoluciones y cambios mano a mano",flujo:"🤝 Entrega del equipo",impacto:"Crítico",prioridad:"Crítica",responsable:"Célula Digi",inicio:"01/05/2026",fin:"31/05/2026",mitigacion:"Ante una anulación o devolución, el sistema debe ejecutar la baja y liberación de la licencia del equipo en Trustonic de forma automática.",status:"Pendiente"},
+    {rf:"RF 2.15",mejora:"Visualización del estado actual del equipo en Trustonic desde el Gestor de IMEI",flujo:"📊 Monitoreo",impacto:"Crítico",prioridad:"Crítica",responsable:"Gestor de IMEIs",inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"El Gestor de IMEI debe mostrar el estado actual de cada equipo en Trustonic.",status:"Pendiente"},
+    {rf:"RF 2.13",mejora:"Recepción de notificaciones de Trustonic mediante Webhook",flujo:"🔒 Bloqueo / Desbloqueo",impacto:"Alto",prioridad:"Baja",responsable:"Arquitectura",inicio:"01/06/2026",fin:"31/07/2026",mitigacion:"Implementar un mecanismo de recepción de notificaciones entrantes desde Trustonic (Webhook).",status:"Pendiente"},
+    {rf:"RF 2.2", mejora:"Visualización del estado del equipo celular en el CRM de Cartera",flujo:"🔔 Notificación y cobranza",impacto:"Alto",prioridad:"Alta",responsable:"Celula CRM",inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"El CRM de Cartera debe mostrar el estado actual del equipo celular asociado a una factura.",status:"Pendiente"},
+    {rf:"RF 2.10",mejora:"Mejora del query: CK_AR_BLOQUEO_CELULAR (filtro por rango de fechas)",flujo:"🔔 Notificación y cobranza",impacto:"Medio",prioridad:"Baja",responsable:"PeopleSoft",inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"El query CK_AR_BLOQUEO_CELULAR debe permitir consultar registros por un rango de fechas.",status:"Pendiente"},
+    {rf:"RF 2.3", mejora:"Encolamiento y reprocesamiento automático de peticiones fallidas",flujo:"📦 Salida de inventario · 🔒 Bloqueo",impacto:"Alto",prioridad:"Crítica",responsable:"Célula Digi",inicio:"01/06/2026",fin:"31/07/2026",mitigacion:"Cuando una petición entre sistemas falle por indisponibilidad o error transitorio, el sistema debe encolarla automáticamente.",status:"Pendiente"},
+    {rf:"RF 2.12",mejora:"Registro de múltiples IMEI asociados a una misma factura",flujo:"🧾 Facturación / Sistemas",impacto:"Medio",prioridad:"Media",responsable:"Célula Digi",inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"El sistema debe permitir que una factura tenga asociados más de un IMEI.",status:"Pendiente"},
+    {rf:"RF 2.4", mejora:"Envío automático del Documento de Reserva de Dominio al cliente",flujo:"🤝 Entrega del equipo",impacto:"Alto",prioridad:"Alta",responsable:"Sistema",inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"Una vez confirmada la entrega del equipo al cliente, el sistema debe generar y enviar automáticamente el Documento de Reserva de Dominio.",status:"Pendiente"},
+    {rf:"RF 2.9", mejora:"Validación de IMEI y clasificación de errores (15 dígitos numéricos)",flujo:"📦 Salida de inventario",impacto:"Alto",prioridad:"Alta",responsable:"Célula Digi",inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"El IMEI ingresado debe corresponder a un valor numérico de exactamente 15 dígitos.",status:"Pendiente"},
+    {rf:"RF 2.18",mejora:"Envío registro solo de marcas que se pueden bloquear vía Trustonic",flujo:"📦 Salida de inventario",impacto:"Alto",prioridad:"Alta",responsable:"Célula Digi",inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"Filtrar el envío a Trustonic para registro únicamente las marcas compatibles con bloqueo.",status:"Pendiente"},
+    {rf:"RF 2.17",mejora:"Cargue masivo de registros en el Gestor de IMEI",flujo:"📊 Monitoreo",impacto:"Medio",prioridad:"Media",responsable:"Gestor de IMEIs",inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"El Gestor de IMEI debe permitir cargar múltiples registros simultáneamente a través de un archivo.",status:"Pendiente"},
+    {rf:"RF 2.16",mejora:"Eliminación controlada (inactivación masiva) de registros en el Gestor de IMEI",flujo:"📊 Monitoreo",impacto:"Medio",prioridad:"Media",responsable:"Gestor de IMEIs",inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"El Gestor de IMEI debe permitir eliminar registros de forma lógica (sin borrado físico).",status:"Pendiente"},
+    {rf:"RF 2.1", mejora:"Consistencia de la factura con 14 dígitos en los sistemas de información",flujo:"🧾 Facturación / Sistemas",impacto:"Bajo",prioridad:"Baja",responsable:"Célula Digi / PeopleSoft",inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"Todos los sistemas deben operar con el número completo de factura de 14 dígitos.",status:"Pendiente"},
+    {rf:"RF 2.19",mejora:"Validación del estado en Trustonic antes de ejecutar una acción",flujo:"🔒 Acciones",impacto:"Alto",prioridad:"Alta",responsable:"Gestor de IMEIs",inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"Antes de ejecutar cualquier acción sobre un equipo, el Gestor debe consultar y guardar el estado actual del equipo en Trustonic.",status:"Pendiente"},
+    {rf:"RF 2.20",mejora:"Registro del origen de las acciones en el Gestor de IMEI (API vs Manual)",flujo:"📊 Monitoreo",impacto:"Alto",prioridad:"Crítica",responsable:"Gestor de IMEIs",inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"Cada acción registrada en el Gestor debe indicar si fue ejecutada a través de la API o de forma manual.",status:"Pendiente"},
+    {rf:"RF 2.21",mejora:"Visibilidad de observaciones manuales en todas las vistas y reportes",flujo:"📊 Monitoreo",impacto:"Bajo",prioridad:"Bajo",responsable:"Gestor de IMEIs",inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"Cuando un usuario diligencie el campo de observaciones de forma manual, esta información debe estar disponible en todos los reportes.",status:"Pendiente"},
+    {rf:"RF 2.7", mejora:"Disponibilización de datos del Gestor de IMEI hacia Power BI",flujo:"📊 Monitoreo",impacto:"Alto",prioridad:"Alta",responsable:"Arquitectura / Gestor de IMEIs",inicio:"01/07/2026",fin:"31/08/2026",mitigacion:"Los datos del Gestor de IMEI deben estar disponibles para ser consumidos desde Power BI.",status:"Pendiente"},
+    {rf:"RF 2.14",mejora:"Uso de cuenta de servicio genérica para las integraciones",flujo:"📊 Monitoreo",impacto:"Medio",prioridad:"Baja",responsable:"Sistema",inicio:"01/06/2026",fin:"30/06/2026",mitigacion:"Las integraciones deben operar con una cuenta de servicio genérica.",status:"Pendiente"},
+    {rf:"RF 2.11",mejora:"Ajuste del proceso People ante clientes no registrados en el Gestor de IMEI",flujo:"🔔 Notificación y cobranza",impacto:"Medio",prioridad:"Baja",responsable:"Sistema",inicio:"01/07/2026",fin:"31/07/2026",mitigacion:"El proceso automático de Notificación desde People solo debe gestionar los clientes que apliquen según sus marcas en el sistema.",status:"Pendiente"},
   ]},
 ];
 
@@ -531,69 +526,220 @@ const RISK_COLORS = {
 let expanded = {};
 let selectedStep = null;
 let current360 = 3;
+let taskOpenMap = {}; // milestoneId → bool
 
-function switchSection(sec) {
-  ['proyecto','journey'].forEach(s => {
-    document.getElementById('sec-'+s).style.display = s===sec?'':'none';
-  });
-  document.querySelectorAll('.main-nav button').forEach((b,i)=>{
-    b.classList.toggle('active',['proyecto','journey'][i]===sec);
-  });
+// ── drag state ──
+let _dragMid = null;   // milestone id
+let _dragIdx = null;   // task index being dragged
+let _dragOverIdx = null;
+
+function switchSection(sec){
+  ['proyecto','journey'].forEach(s=>{ document.getElementById('sec-'+s).style.display=s===sec?'':'none'; });
+  document.querySelectorAll('.main-nav button').forEach((b,i)=>{ b.classList.toggle('active',['proyecto','journey'][i]===sec); });
 }
 
-function switchSub(sub, section) {
-  const subs = section==='proyecto'?['fases','hitos','p360']:['jmap'];
-  subs.forEach(s=>{
-    const el=document.getElementById('sub-'+s);
-    if(el) el.style.display=s===sub?'':'none';
-  });
+function switchSub(sub,section){
+  const subs=section==='proyecto'?['fases','hitos','p360']:['jmap'];
+  subs.forEach(s=>{ const el=document.getElementById('sub-'+s); if(el) el.style.display=s===sub?'':'none'; });
   document.querySelectorAll(`#sec-${section} .subtabs button`).forEach((b,i)=>b.classList.toggle('active',subs[i]===sub));
   if(sub==='hitos') renderMilestones();
   if(sub==='p360')  render360();
   if(sub==='fases') renderPhases();
 }
 
-function renderGlobalProgress() {
+// ════════════════════════════════
+// PHASES
+// ════════════════════════════════
+function renderGlobalProgress(){
   const totalActs=PHASES.reduce((s,p)=>s+p.activities.length,0);
   const doneActs=PHASES.reduce((s,p)=>s+p.activities.filter(a=>a.status==='Hecho').length,0);
   const inProg=PHASES.reduce((s,p)=>s+p.activities.filter(a=>a.status==='En progreso').length,0);
   const blocked=PHASES.reduce((s,p)=>s+p.activities.filter(a=>a.status==='Bloqueado').length,0);
   const pct=Math.round(doneActs/totalActs*100);
-  const el=document.getElementById('global-progress');
-  if(!el) return;
+  const el=document.getElementById('global-progress'); if(!el) return;
   el.innerHTML=`<div style="text-align:center;min-width:64px"><div style="font-size:32px;font-weight:800;color:${pct===100?'#15803d':pct>0?'#3b5bdb':'#cbd5e1'};line-height:1">${pct}%</div><div style="font-size:9px;color:#94a3b8;font-weight:700;letter-spacing:.08em;margin-top:2px">AVANCE GLOBAL</div></div><div style="flex:1;height:8px;background:#f1f5f9;border-radius:8px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${pct===100?'#15803d':'#3b5bdb'};border-radius:8px;transition:width .4s"></div></div><div style="display:flex;gap:20px;flex-wrap:wrap"><div style="text-align:center"><div style="font-size:18px;font-weight:800;color:#15803d">${doneActs}</div><div style="font-size:9px;color:#94a3b8;font-weight:600">Hechas</div></div><div style="text-align:center"><div style="font-size:18px;font-weight:800;color:#3b5bdb">${inProg}</div><div style="font-size:9px;color:#94a3b8;font-weight:600">En progreso</div></div><div style="text-align:center"><div style="font-size:18px;font-weight:800;color:#dc2626">${blocked}</div><div style="font-size:9px;color:#94a3b8;font-weight:600">Bloqueadas</div></div><div style="text-align:center"><div style="font-size:18px;font-weight:800;color:#0f172a">${totalActs}</div><div style="font-size:9px;color:#94a3b8;font-weight:600">Total act.</div></div></div>`;
 }
 
-function renderPhases() {
-  const c=document.getElementById('phases-container');
-  c.innerHTML='';
+function renderPhases(){
+  const c=document.getElementById('phases-container'); c.innerHTML='';
   PHASES.forEach(phase=>{
     const pct=Math.round(phase.activities.filter(a=>a.status==='Hecho').length/phase.activities.length*100);
     const done=phase.activities.filter(a=>a.status==='Hecho').length;
     const isOpen=expanded[phase.id];
-    const card=document.createElement('div');
-    card.className='phase-card';
-    card.innerHTML=`<div class="phase-header" onclick="togglePhase(${phase.id})" style="cursor:pointer"><div class="phase-dot" style="background:${phase.color};box-shadow:0 0 8px ${phase.color}44"></div><div class="phase-info"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="phase-name">${phase.name}</span><span class="phase-meta" onclick="event.stopPropagation()" title="Fechas de la fase (clic para editar)"><input value="${phase.start}" onchange="updatePhaseField(${phase.id},'start',this.value)" style="width:78px;border:none;background:transparent;font:inherit;color:inherit;text-align:center;outline:none;border-radius:4px" onfocus="this.style.background='#fff'" onblur="this.style.background='transparent'"> → <input value="${phase.end}" onchange="updatePhaseField(${phase.id},'end',this.value)" style="width:78px;border:none;background:transparent;font:inherit;color:inherit;text-align:center;outline:none;border-radius:4px" onfocus="this.style.background='#fff'" onblur="this.style.background='transparent'"></span><span class="phase-dur">${phase.dur}</span></div><div class="progress-row" style="margin-top:7px"><div class="progress-bar-wrap" style="max-width:160px"><div class="progress-bar" style="width:${pct}%;background:${phase.color}"></div></div><span style="font-size:10px;color:#94a3b8">${done}/${phase.activities.length} actividades</span></div></div><div style="display:flex;align-items:center;gap:12px"><div style="text-align:center"><div style="font-size:22px;font-weight:800;color:${pct===100?'#16a34a':pct>0?phase.color:'#cbd5e1'};line-height:1">${pct}%</div><div style="font-size:9px;color:#94a3b8;font-weight:600;letter-spacing:.05em">AVANCE</div></div><span class="phase-toggle">${isOpen?'▲':'▼'}</span></div></div>${isOpen?renderActivities(phase):''}`;
+    const card=document.createElement('div'); card.className='phase-card';
+    card.innerHTML=`<div class="phase-header" onclick="togglePhase(${phase.id})"><div class="phase-dot" style="background:${phase.color};box-shadow:0 0 8px ${phase.color}44"></div><div class="phase-info"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="phase-name">${phase.name}</span><span class="phase-meta" onclick="event.stopPropagation()"><input value="${phase.start}" onchange="updatePhaseField(${phase.id},'start',this.value)" style="width:78px;border:none;background:transparent;font:inherit;color:inherit;text-align:center;outline:none;border-radius:4px" onfocus="this.style.background='#fff'" onblur="this.style.background='transparent'"> → <input value="${phase.end}" onchange="updatePhaseField(${phase.id},'end',this.value)" style="width:78px;border:none;background:transparent;font:inherit;color:inherit;text-align:center;outline:none;border-radius:4px" onfocus="this.style.background='#fff'" onblur="this.style.background='transparent'"></span><span class="phase-dur">${phase.dur}</span></div><div class="progress-row" style="margin-top:7px"><div class="progress-bar-wrap" style="max-width:160px"><div class="progress-bar" style="width:${pct}%;background:${phase.color}"></div></div><span style="font-size:10px;color:#94a3b8">${done}/${phase.activities.length} actividades</span></div></div><div style="display:flex;align-items:center;gap:12px"><div style="text-align:center"><div style="font-size:22px;font-weight:800;color:${pct===100?'#16a34a':pct>0?phase.color:'#cbd5e1'};line-height:1">${pct}%</div><div style="font-size:9px;color:#94a3b8;font-weight:600;letter-spacing:.05em">AVANCE</div></div><span class="phase-toggle">${isOpen?'▲':'▼'}</span></div></div>${isOpen?renderActivities(phase):''}`;
     c.appendChild(card);
   });
   renderGlobalProgress();
 }
 
-function renderActivities(phase) {
-  return `<div class="phase-activities"><div class="act-header"><span>Actividad</span><span>Responsable</span><span>Estado</span></div>${phase.activities.map(act=>{const sc=STATUS_CONFIG[act.status]||STATUS_CONFIG['Pendiente'];return`<div class="act-row" style="position:relative"><span class="act-name">${act.name}</span><input class="act-resp" value="${act.resp}" onchange="updateResp(${phase.id},'${act.id}',this.value)"><div style="display:flex;align-items:center;gap:6px"><select class="status-sel" style="background:${sc.bg};color:${sc.text}" onchange="updateStatus(${phase.id},'${act.id}',this.value)">${STATUSES.map(s=>`<option value="${s}" ${s===act.status?'selected':''}>${s}</option>`).join('')}</select><button onclick="deleteActivity(${phase.id},'${act.id}')" title="Eliminar actividad" style="border:none;background:transparent;color:#cbd5e1;font-size:14px;cursor:pointer;padding:2px 4px;border-radius:4px" onmouseover="this.style.color='#ef4444';this.style.background='#fef2f2'" onmouseout="this.style.color='#cbd5e1';this.style.background='transparent'">✕</button></div></div>`;}).join('')}<div style="padding:10px 20px;border-top:1px solid var(--border-soft)"><button onclick="addActivity(${phase.id})" style="border:1px dashed #cbd5e1;background:#fff;color:#3b5bdb;font-size:12px;font-weight:600;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:inherit">＋ Agregar actividad</button></div></div>`;
+function renderActivities(phase){
+  return `<div class="phase-activities"><div class="act-header"><span>Actividad</span><span>Responsable</span><span>Estado</span></div>${phase.activities.map(act=>{const sc=STATUS_CONFIG[act.status]||STATUS_CONFIG['Pendiente'];return`<div class="act-row"><span class="act-name">${act.name}</span><input class="act-resp" value="${act.resp}" onchange="updateResp(${phase.id},'${act.id}',this.value)"><div style="display:flex;align-items:center;gap:6px"><select class="status-sel" style="background:${sc.bg};color:${sc.text}" onchange="updateStatus(${phase.id},'${act.id}',this.value)">${STATUSES.map(s=>`<option value="${s}" ${s===act.status?'selected':''}>${s}</option>`).join('')}</select><button onclick="deleteActivity(${phase.id},'${act.id}')" title="Eliminar" style="border:none;background:transparent;color:#cbd5e1;font-size:14px;cursor:pointer;padding:2px 4px;border-radius:4px" onmouseover="this.style.color='#ef4444';this.style.background='#fef2f2'" onmouseout="this.style.color='#cbd5e1';this.style.background='transparent'">✕</button></div></div>`;}).join('')}<div style="padding:10px 20px;border-top:1px solid var(--border-soft)"><button onclick="addActivity(${phase.id})" style="border:1px dashed #cbd5e1;background:#fff;color:#3b5bdb;font-size:12px;font-weight:600;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:inherit">＋ Agregar actividad</button></div></div>`;
 }
 function togglePhase(id){expanded[id]=!expanded[id];renderPhases();}
 function updateStatus(phaseId,actId,val){PHASES.find(p=>p.id===phaseId).activities.find(a=>a.id===actId).status=val;renderPhases();saveState();}
 function updateResp(phaseId,actId,val){PHASES.find(p=>p.id===phaseId).activities.find(a=>a.id===actId).resp=val;saveState();}
 function updatePhaseField(phaseId,field,val){const p=PHASES.find(p=>p.id===phaseId);if(p){p[field]=val;saveState();}}
-function addActivity(phaseId){const p=PHASES.find(p=>p.id===phaseId);if(!p)return;const name=prompt('Nombre de la nueva actividad:');if(!name)return;const newId='a'+Date.now();p.activities.push({id:newId,name:name,resp:'',status:'Pendiente'});expanded[phaseId]=true;renderPhases();saveState();}
+function addActivity(phaseId){const p=PHASES.find(p=>p.id===phaseId);if(!p)return;const name=prompt('Nombre de la nueva actividad:');if(!name)return;p.activities.push({id:'a'+Date.now(),name,resp:'',status:'Pendiente'});expanded[phaseId]=true;renderPhases();saveState();}
 function deleteActivity(phaseId,actId){if(!confirm('¿Eliminar esta actividad?'))return;const p=PHASES.find(p=>p.id===phaseId);if(!p)return;p.activities=p.activities.filter(a=>a.id!==actId);renderPhases();saveState();}
 
-// TIMELINE: Mayo → Septiembre
+// ════════════════════════════════
+// TASK LIST — per milestone
+// ════════════════════════════════
+function _taskStatusStyle(status){
+  return TASK_STATUS_CONFIG[status]||TASK_STATUS_CONFIG['Pendiente'];
+}
+
+function renderTaskList(mid){
+  const m = MILESTONES.find(x=>x.id===mid);
+  if(!m) return '';
+  if(!m.tasks) m.tasks=[];
+  const tasks = m.tasks;
+  const done = tasks.filter(t=>t.status==='Hecho').length;
+  const isOpen = taskOpenMap[mid]||false;
+  const countCls = done>0&&done===tasks.length?'has-done':done>0?'has-done':'';
+  const countLabel = tasks.length===0?'Sin tareas':`${done}/${tasks.length} completadas`;
+
+  let html = `<div class="task-section">
+    <button class="task-toggle-btn ${isOpen?'open':''}" onclick="toggleTaskList('${mid}')">
+      <span style="font-size:13px">${isOpen?'▾':'▸'}</span>
+      <span>Lista de tareas</span>
+      <span class="tcount ${countCls}">${countLabel}</span>
+      ${tasks.length>0?`<div style="flex:1;height:3px;background:var(--border-soft);border-radius:3px;overflow:hidden;max-width:100px;margin-left:4px"><div style="height:100%;width:${tasks.length?Math.round(done/tasks.length*100):0}%;background:#22c55e;border-radius:3px;transition:width .3s"></div></div>`:''}
+    </button>`;
+
+  if(isOpen){
+    html += `<div class="task-list-wrap">
+      <ul class="task-list" id="tl-${mid}">`;
+    tasks.forEach((task,idx)=>{
+      const sc = _taskStatusStyle(task.status);
+      const chkCls = sc.cls;
+      html += `<li class="task-item"
+        draggable="true"
+        ondragstart="onTaskDragStart(event,'${mid}',${idx})"
+        ondragover="onTaskDragOver(event,'${mid}',${idx})"
+        ondragleave="onTaskDragLeave(event)"
+        ondrop="onTaskDrop(event,'${mid}',${idx})"
+        ondragend="onTaskDragEnd(event)"
+        data-mid="${mid}" data-idx="${idx}">
+        <span class="task-drag-handle" title="Arrastrar para reordenar">⠿</span>
+        <div class="task-checkbox ${chkCls}" onclick="cycleTaskStatus('${mid}',${idx})" title="Cambiar estado"></div>
+        <span class="task-text" contenteditable="true" data-status="${task.status}"
+          onblur="updateTaskText('${mid}',${idx},this.innerText.trim())"
+          onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}"
+        >${task.text}</span>
+        <select class="task-status-sel" style="background:${sc.bg};color:${sc.text}"
+          onchange="updateTaskStatus('${mid}',${idx},this.value)">
+          ${STATUSES.map(s=>`<option value="${s}" ${s===task.status?'selected':''}>${s}</option>`).join('')}
+        </select>
+        <button class="task-del-btn" onclick="deleteTask('${mid}',${idx})" title="Eliminar tarea">✕</button>
+      </li>`;
+    });
+    html += `</ul>
+      <div class="task-add-row">
+        <input class="task-add-input" id="ta-${mid}" placeholder="Nueva tarea…" type="text"
+          onkeydown="if(event.key==='Enter') addTask('${mid}')">
+        <button class="task-add-btn" onclick="addTask('${mid}')">＋ Agregar</button>
+      </div>
+    </div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function toggleTaskList(mid){
+  taskOpenMap[mid] = !taskOpenMap[mid];
+  // re-render just this milestone card inline
+  const el = document.getElementById('ts-'+mid);
+  if(el) el.outerHTML = renderTaskList(mid);
+}
+
+function addTask(mid){
+  const inp = document.getElementById('ta-'+mid);
+  if(!inp) return;
+  const text = inp.value.trim();
+  if(!text) return;
+  const m = MILESTONES.find(x=>x.id===mid);
+  if(!m) return;
+  if(!m.tasks) m.tasks=[];
+  m.tasks.push({id:'t'+Date.now(), text, status:'Pendiente'});
+  taskOpenMap[mid]=true;
+  saveState();
+  // patch DOM
+  const el=document.getElementById('ts-'+mid);
+  if(el) el.outerHTML=renderTaskList(mid);
+}
+
+function deleteTask(mid,idx){
+  const m=MILESTONES.find(x=>x.id===mid); if(!m||!m.tasks) return;
+  m.tasks.splice(idx,1);
+  saveState();
+  const el=document.getElementById('ts-'+mid);
+  if(el) el.outerHTML=renderTaskList(mid);
+}
+
+function updateTaskStatus(mid,idx,val){
+  const m=MILESTONES.find(x=>x.id===mid); if(!m||!m.tasks) return;
+  m.tasks[idx].status=val;
+  saveState();
+  const el=document.getElementById('ts-'+mid);
+  if(el) el.outerHTML=renderTaskList(mid);
+}
+
+function cycleTaskStatus(mid,idx){
+  const order=['Pendiente','En progreso','Hecho','Bloqueado'];
+  const m=MILESTONES.find(x=>x.id===mid); if(!m||!m.tasks) return;
+  const cur=m.tasks[idx].status;
+  const next=order[(order.indexOf(cur)+1)%order.length];
+  m.tasks[idx].status=next;
+  saveState();
+  const el=document.getElementById('ts-'+mid);
+  if(el) el.outerHTML=renderTaskList(mid);
+}
+
+function updateTaskText(mid,idx,text){
+  const m=MILESTONES.find(x=>x.id===mid); if(!m||!m.tasks) return;
+  if(text) m.tasks[idx].text=text;
+  saveState();
+}
+
+// Drag & drop tasks
+function onTaskDragStart(e,mid,idx){
+  _dragMid=mid; _dragIdx=idx;
+  e.dataTransfer.effectAllowed='move';
+  e.currentTarget.classList.add('dragging');
+}
+function onTaskDragOver(e,mid,idx){
+  if(_dragMid!==mid) return;
+  e.preventDefault(); e.dataTransfer.dropEffect='move';
+  _dragOverIdx=idx;
+  document.querySelectorAll(`#tl-${mid} .task-item`).forEach((li,i)=>{
+    li.classList.toggle('drag-over',i===idx&&i!==_dragIdx);
+  });
+}
+function onTaskDragLeave(e){ e.currentTarget.classList.remove('drag-over'); }
+function onTaskDrop(e,mid,idx){
+  e.preventDefault();
+  if(_dragMid!==mid||_dragIdx===null||_dragIdx===idx) return;
+  const m=MILESTONES.find(x=>x.id===mid); if(!m||!m.tasks) return;
+  const [moved]=m.tasks.splice(_dragIdx,1);
+  m.tasks.splice(idx,0,moved);
+  saveState();
+  const el=document.getElementById('ts-'+mid);
+  if(el) el.outerHTML=renderTaskList(mid);
+}
+function onTaskDragEnd(e){
+  _dragMid=null; _dragIdx=null; _dragOverIdx=null;
+  document.querySelectorAll('.task-item').forEach(li=>li.classList.remove('dragging','drag-over'));
+}
+
+// ════════════════════════════════
+// MILESTONES
+// ════════════════════════════════
 const TL_MONTHS=[{key:'May26',label:'May',year:'2026'},{key:'Jun26',label:'Jun',year:'2026'},{key:'Jul26',label:'Jul',year:'2026'},{key:'Ago26',label:'Ago',year:'2026'},{key:'Sep26',label:'Sep',year:'2026'}];
 function whenToMonth(when){if(when.includes('May'))return'May26';if(when.includes('Jun'))return'Jun26';if(when.includes('Jul'))return'Jul26';if(when.includes('Ago'))return'Ago26';return'Sep26';}
 
-function renderMilestoneTimeline() {
+function renderMilestoneTimeline(){
   const byMonth={};
   TL_MONTHS.forEach(m=>byMonth[m.key]=[]);
   MILESTONES.forEach(m=>{const mk=whenToMonth(m.when);if(byMonth[mk])byMonth[mk].push(m);});
@@ -628,7 +774,7 @@ function renderMilestoneTimeline() {
   </div>`;
 }
 
-function renderMilestones() {
+function renderMilestones(){
   const container=document.getElementById('milestones-container');
   container.innerHTML=renderMilestoneTimeline();
   const sorted=[...MILESTONES].sort((a,b)=>(PRI_ORDER[a.priority]??9)-(PRI_ORDER[b.priority]??9));
@@ -636,103 +782,67 @@ function renderMilestones() {
   listEl.innerHTML=sorted.map((m,idx)=>{
     const pc=PRI_CONFIG[m.priority]||PRI_CONFIG['Media'];
     const sc=STATUS_CONFIG[m.status]||STATUS_CONFIG['Pendiente'];
-    const bars=[1,2,3,4,5].map(i=>`<div class="impact-bar" style="background:${i<=m.impact?pc.dot:'#e2e8f0'}"></div>`).join('');
     const pNum={"Crítica":1,"Alta":2,"Media":3,"Baja":4}[m.priority]||4;
-    return`<div class="milestone-card" style="border-left:3px solid ${pc.dot}">
-      <div class="m-rank" style="border:1.5px solid ${pc.dot};color:${pc.dot}">${idx+1}</div>
-      <div>
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap">
-          <span style="background:#0f172a;color:#fff;font-size:8px;font-weight:800;padding:2px 7px;border-radius:5px">${m.rf}</span>
-          <span style="background:${pc.bg};color:${pc.text};font-size:8px;font-weight:800;padding:2px 8px;border-radius:10px;border:1px solid ${pc.dot}55">${pc.emoji} P${pNum} · ${m.priority}</span>
-          <span style="font-size:9px;color:#94a3b8;background:#f1f3f7;border:1px solid #e4e7ee;padding:1px 7px;border-radius:10px;font-weight:700">~ Fecha proyectada</span>
+    const bars=[1,2,3,4,5].map(i=>`<div class="impact-bar" style="background:${i<=m.impact?pc.dot:'#e2e8f0'}"></div>`).join('');
+    if(!m.tasks) m.tasks=[];
+    const taskDone=m.tasks.filter(t=>t.status==='Hecho').length;
+    const taskTotal=m.tasks.length;
+    return `<div class="milestone-card" style="border-left:3px solid ${pc.dot}">
+      <div class="milestone-body">
+        <div class="m-rank" style="border:1.5px solid ${pc.dot};color:${pc.dot}">${idx+1}</div>
+        <div>
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap">
+            <span style="background:#0f172a;color:#fff;font-size:8px;font-weight:800;padding:2px 7px;border-radius:5px">${m.rf}</span>
+            <span style="background:${pc.bg};color:${pc.text};font-size:8px;font-weight:800;padding:2px 8px;border-radius:10px;border:1px solid ${pc.dot}55">${pc.emoji} P${pNum} · ${m.priority}</span>
+            <span style="font-size:9px;color:#94a3b8;background:#f1f3f7;border:1px solid #e4e7ee;padding:1px 7px;border-radius:10px;font-weight:700">~ Fecha proyectada</span>
+            ${taskTotal>0?`<span style="font-size:9px;background:${taskDone===taskTotal?'#dcfce7':'#eef2ff'};color:${taskDone===taskTotal?'#15803d':'#3b5bdb'};border:1px solid ${taskDone===taskTotal?'#bbf7d0':'#c7d2fe'};padding:1px 8px;border-radius:10px;font-weight:700">✓ ${taskDone}/${taskTotal} tareas</span>`:''}
+          </div>
+          <div class="m-friction">⚡ ${m.friction}</div>
+          <div class="m-name">${m.name}</div>
+          <div class="m-meta">
+            <span class="m-date">📅 <input value="${m.when}" onchange="updateMilestone('${m.id}','when',this.value)" style="width:90px;border:1px solid transparent;background:transparent;font:inherit;color:inherit;outline:none;border-radius:4px;padding:1px 4px" onfocus="this.style.background='#fff';this.style.borderColor='#e2e8f0'" onblur="this.style.background='transparent';this.style.borderColor='transparent'"></span>
+            <span class="m-phase">📌 ${m.phase}</span>
+          </div>
+          <div class="m-impact-desc">→ ${m.impactDesc}</div>
+          <div class="impact-bars">${bars}<span class="impact-label">Impacto ${m.impact}/5</span></div>
         </div>
-        <div class="m-friction">⚡ ${m.friction}</div>
-        <div class="m-name">${m.name}</div>
-        <div class="m-meta"><span class="m-date">📅 <input value="${m.when}" onchange="updateMilestone('${m.id}','when',this.value)" style="width:90px;border:1px solid transparent;background:transparent;font:inherit;color:inherit;outline:none;border-radius:4px;padding:1px 4px" onfocus="this.style.background='#fff';this.style.borderColor='#e2e8f0'" onblur="this.style.background='transparent';this.style.borderColor='transparent'"></span><span class="m-phase">📌 ${m.phase}</span></div>
-        <div class="m-impact-desc">→ ${m.impactDesc}</div>
-        <div class="impact-bars">${bars}<span class="impact-label">Impacto ${m.impact}/5</span></div>
+        <div class="m-controls">
+          <select class="status-sel" style="background:${sc.bg};color:${sc.text}" onchange="updateMilestone('${m.id}','status',this.value)">${STATUSES.map(s=>`<option value="${s}" ${s===m.status?'selected':''}>${s}</option>`).join('')}</select>
+          <select class="m-pri-sel" onchange="updateMilestone('${m.id}','priority',this.value)">${['Crítica','Alta','Media','Baja'].map(p=>`<option value="${p}" ${p===m.priority?'selected':''}>${p}</option>`).join('')}</select>
+        </div>
       </div>
-      <div class="m-controls">
-        <select class="status-sel" style="background:${sc.bg};color:${sc.text}" onchange="updateMilestone('${m.id}','status',this.value)">${STATUSES.map(s=>`<option value="${s}" ${s===m.status?'selected':''}>${s}</option>`).join('')}</select>
-        <select class="m-pri-sel" onchange="updateMilestone('${m.id}','priority',this.value)">${['Crítica','Alta','Media','Baja'].map(p=>`<option value="${p}" ${p===m.priority?'selected':''}>${p}</option>`).join('')}</select>
-      </div>
+      <div id="ts-${m.id}">${renderTaskList(m.id)}</div>
     </div>`;
   }).join('');
   container.appendChild(listEl);
+
   const s=document.getElementById('milestones-summary');
   const counts=['Crítica','Alta','Media','Baja'].map(p=>({p,cnt:MILESTONES.filter(m=>m.priority===p).length}));
   s.innerHTML=counts.map(({p,cnt})=>`<div class="summary-item"><div class="summary-count" style="color:${PRI_CONFIG[p].dot}">${PRI_CONFIG[p].emoji} ${cnt}</div><div class="summary-label">RF ${p}</div></div>`).join('')+
     `<div class="summary-item summary-divider"><div class="summary-count" style="color:#0f172a">${MILESTONES.length}</div><div class="summary-label">Total RF</div></div>`+
-    `<div style="margin-left:auto;align-self:center;background:#f1f3f7;border:1px solid #e4e7ee;border-radius:8px;padding:6px 14px;display:flex;align-items:center;gap:6px"><span>⚠️</span><span style="font-size:10px;font-weight:700;color:#5b6677">Fechas proyectadas — estimación pendiente de planificación formal</span></div>`;
+    `<div style="margin-left:auto;align-self:center;background:#f1f3f7;border:1px solid #e4e7ee;border-radius:8px;padding:6px 14px;display:flex;align-items:center;gap:6px"><span>⚠️</span><span style="font-size:10px;font-weight:700;color:#5b6677">Fechas proyectadas — estimación pendiente</span></div>`;
 }
-function updateMilestone(id,field,val){MILESTONES.find(m=>m.id===id)[field]=val;renderMilestones();saveState();}
 
-function renderJourney() {
-  const track=document.getElementById('journey-track');
-  track.innerHTML='';
-  STEPS.forEach((s,idx)=>{
-    const isActive=selectedStep===idx;
-    const criticals=s.risks.filter(r=>r.priority==='Crítica').length;
-    const rfCount=(s.rfRefs||[]).length;
-    const borderColor=isActive?'#3b5bdb':criticals>0?'#f97316':'#cbd5e1';
-    const bg=isActive?'#3b5bdb':'#ffffff';
-    const shadow=isActive?'0 0 0 4px rgba(59,91,219,.15),0 4px 12px rgba(15,23,42,.08)':criticals>0?'0 0 0 3px rgba(249,115,22,.12),0 1px 4px rgba(15,23,42,.06)':'0 1px 3px rgba(15,23,42,.05)';
-    const critBadge=criticals>0&&!isActive?`<div class="step-critical-badge">${criticals}</div>`:'';
-    const dots=s.risks.map(r=>`<div class="step-dot" style="background:${RISK_COLORS[r.type].dot}"></div>`).join('');
-    const rfBadge=rfCount>0?`<div style="background:var(--brand-soft);color:var(--brand);font-size:9px;font-weight:800;padding:2px 8px;border-radius:10px;font-family:'JetBrains Mono',monospace;border:1px solid #c7d2fe">${rfCount} RF</div>`:`<div style="background:transparent;color:#cbd5e1;font-size:9px;font-weight:600;padding:2px 6px">— sin RF</div>`;
-    const node=document.createElement('div');
-    node.style.display='flex';node.style.alignItems='center';
-    node.innerHTML=`<div class="step-node" onclick="selectStep(${idx})" style="cursor:pointer"><div class="step-circle ${isActive?'active':''}" style="border-color:${borderColor};background:${bg};box-shadow:${shadow}">${s.icon}${critBadge}</div><div class="step-num ${isActive?'active':''}">PASO ${s.id}</div><div class="step-name ${isActive?'active':''}">${s.name}</div><div class="step-actor">${s.actor}</div>${rfBadge}<div class="step-dots">${dots}</div></div>${idx<STEPS.length-1?'<div class="step-connector"></div>':''}`;
-    track.appendChild(node);
-  });
-  const leg=document.getElementById('journey-legend');
-  leg.innerHTML=Object.entries(RISK_COLORS).map(([k,v])=>`<div class="legend-item"><div class="legend-dot" style="background:${v.dot}"></div>${v.label}</div>`).join('')+`<div class="legend-item"><div class="legend-dot" style="background:#f97316"></div>Riesgo crítico</div>`;
-  const pw=document.getElementById('detail-panel-wrap');
-  if(selectedStep===null){pw.innerHTML=`<div class="empty-panel">Selecciona una etapa del journey para ver riesgos y mejoras</div>`;return;}
-  const step=STEPS[selectedStep];
-  const riskCards=step.risks.map(r=>{const rc=RISK_COLORS[r.type];const pc=PRI_CONFIG[r.priority]||{dot:'#64748b'};return`<div class="risk-card" style="border-left:3px solid ${rc.dot};border:1px solid ${rc.dot}33;border-left:3px solid ${rc.dot}"><div class="risk-tags"><span class="risk-type-badge" style="background:${rc.bg};color:${rc.text}">${rc.label}</span><span class="risk-pri" style="color:${pc.dot}">● ${r.priority}</span></div><div class="risk-text">${r.text}</div></div>`;}).join('');
-  const imprCards=(step.rfRefs||[]).map(ref=>{
-    const rf=RISKS_360[3].items.find(it=>it.rf===ref);
-    if(!rf) return `<div class="impr-card"><div class="impr-text" style="color:#dc2626">⚠ ${ref} no encontrado en el listado oficial</div></div>`;
-    const pc=PRI_CONFIG[rf.prioridad]||PRI_CONFIG['Media'];
-    const sc=STATUS_CONFIG[rf.status]||STATUS_CONFIG['Pendiente'];
-    return `<div class="impr-card" style="border-left:3px solid ${pc.dot}">
-      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap">
-        <span style="background:#0f172a;color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:5px;font-family:'JetBrains Mono',monospace">${rf.rf}</span>
-        <span style="font-size:9px;font-weight:700;background:${pc.bg};color:${pc.text};padding:2px 8px;border-radius:10px;border:1px solid ${pc.dot}55">${pc.emoji} ${rf.prioridad}</span>
-        <span style="font-size:9px;font-weight:600;background:${sc.bg};color:${sc.text};padding:2px 8px;border-radius:10px">${rf.status}</span>
-      </div>
-      <div style="font-size:12px;font-weight:700;color:#0f172a;line-height:1.4;margin-bottom:5px">${rf.mejora}</div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:10px;color:#64748b;margin-bottom:6px">
-        <span>👤 ${rf.responsable}</span>
-        <span>📅 ${rf.inicio} → ${rf.fin}</span>
-      </div>
-      <div style="font-size:11px;color:#475569;line-height:1.5">${rf.mitigacion}</div>
-    </div>`;
-  }).join('');
-  const emptyImpr=`<div style="border:1.5px dashed var(--border);border-radius:var(--r-sm);padding:18px;text-align:center;color:#94a3b8;font-size:11px;line-height:1.5">Este paso del flujo no tiene<br>requerimientos funcionales asociados<br>en Fase II</div>`;
-  const rfCount=(step.rfRefs||[]).length;
-  pw.innerHTML=`<div class="detail-panel"><div class="detail-header"><div class="detail-icon">${step.icon}</div><div><div class="detail-sub">Paso ${step.id} · ${step.actor}</div><div class="detail-name">${step.name}</div></div><button class="detail-close" onclick="selectStep(null)">✕</button></div><div class="detail-desc">${step.desc}</div><div class="detail-grid"><div><div class="detail-col-title">⚠ Riesgos identificados <span style="background:var(--surface-2);color:var(--text-muted);font-size:10px;padding:1px 7px;border-radius:10px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace">${step.risks.length}</span></div>${riskCards}</div><div><div class="detail-col-title">✨ RF asociados <span style="background:var(--brand-soft);color:var(--brand);font-size:10px;padding:1px 7px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-weight:800">${rfCount}</span></div>${rfCount>0?imprCards:emptyImpr}</div></div></div>`;
+function updateMilestone(id,field,val){
+  const m=MILESTONES.find(m=>m.id===id);
+  if(m) m[field]=val;
+  renderMilestones();
+  saveState();
 }
-function selectStep(idx){selectedStep=(selectedStep===idx)?null:idx;renderJourney();}
 
+// ════════════════════════════════
+// 360° VIEW
+// ════════════════════════════════
+function splitCelulas(r){return r.split('/').map(c=>c.trim()).filter(Boolean);}
+function getCelulas(){const set=new Set();RISKS_360[3].items.forEach(it=>splitCelulas(it.responsable).forEach(c=>set.add(c)));return Array.from(set).sort((a,b)=>a.localeCompare(b,'es'));}
 const IMP_COLOR=v=>v==='Crítico'?'#f97316':v==='Alto'?'#eab308':v==='Medio'?'#22c55e':'#64748b';
 
-// Separa un responsable compuesto ("Célula Digi / PeopleSoft") en células individuales
-function splitCelulas(responsable){return responsable.split('/').map(c=>c.trim()).filter(Boolean);}
-// Lista única y ordenada de todas las células presentes en los RF
-function getCelulas(){
-  const set=new Set();
-  RISKS_360[3].items.forEach(it=>splitCelulas(it.responsable).forEach(c=>set.add(c)));
-  return Array.from(set).sort((a,b)=>a.localeCompare(b,'es'));
-}
-
-function render360() {
+function render360(){
   const tabs=document.getElementById('cat-tabs');
-  tabs.innerHTML=RISKS_360.map((cat,i)=>`<button class="cat-tab ${i===current360?'active':''}" style="${i===current360?'background:'+cat.color+';border-color:'+cat.color:''};" onclick="select360(${i})">${cat.icon} ${cat.category}</button>`).join('');
+  tabs.innerHTML=RISKS_360.map((cat,i)=>`<button class="cat-tab ${i===current360?'active':''}" style="${i===current360?'background:'+cat.color+';border-color:'+cat.color+';':''}" onclick="select360(${i})">${cat.icon} ${cat.category}</button>`).join('');
   const cat=RISKS_360[current360];
   const table=document.getElementById('table-360');
-  if(current360===3) {
+  if(current360===3){
     const filterVal=(window._rfFilter||'').toLowerCase();
     const priFilter=window._rfPriFilter||'Todas';
     const celFilter=window._rfCelFilter||'Todas';
@@ -745,36 +855,38 @@ function render360() {
     const sortMode=window._rfSortMode||'flujo';
     const groups={};
     filtered.forEach(item=>{if(!groups[item.flujo])groups[item.flujo]=[];groups[item.flujo].push(item);});
-    const counts={};
-    ['Crítica','Alta','Media','Baja'].forEach(p=>counts[p]=cat.items.filter(i=>i.prioridad===p).length);
+    const counts={};['Crítica','Alta','Media','Baja'].forEach(p=>counts[p]=cat.items.filter(i=>i.prioridad===p).length);
     const doneCount=cat.items.filter(i=>i.status==='Hecho').length;
     const renderItem=item=>{
       const pc=PRI_CONFIG[item.prioridad]||PRI_CONFIG['Media'];
       const sc=STATUS_CONFIG[item.status]||STATUS_CONFIG['Pendiente'];
       const globalIdx=cat.items.indexOf(item);
       return`<div style="padding:16px 18px;border-bottom:1px solid #f1f5f9;display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:start;transition:background .15s" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:2px">
-            <div style="background:#0f172a;color:#fff;font-size:8px;font-weight:800;padding:3px 6px;border-radius:6px;text-align:center">${item.rf}</div>
-            <div style="width:2px;height:100%;min-height:20px;background:${pc.dot};border-radius:2px;opacity:.5"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:2px">
+          <div style="background:#0f172a;color:#fff;font-size:8px;font-weight:800;padding:3px 6px;border-radius:6px;text-align:center">${item.rf}</div>
+          <div style="width:2px;height:100%;min-height:20px;background:${pc.dot};border-radius:2px;opacity:.5"></div>
+        </div>
+        <div>
+          <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;flex-wrap:wrap"><span style="font-size:13px;font-weight:700;color:#0f172a;line-height:1.4;flex:1">${item.mejora}</span></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;align-items:center">
+            <span style="font-size:10px;font-weight:700;background:${pc.bg};color:${pc.text};padding:2px 9px;border-radius:20px;border:1px solid ${pc.dot}44">${pc.emoji} ${item.prioridad}</span>
+            <span style="font-size:10px;font-weight:700;color:${IMP_COLOR(item.impacto)}">↑ Impacto ${item.impacto}</span>
+            <span style="font-size:10px;color:#64748b">👤 ${item.responsable}</span>
+            <span style="font-size:10px;color:#64748b">📅 <input value="${item.inicio}" onchange="updateMejora(${globalIdx},'inicio',this.value)" style="width:78px;border:1px solid transparent;background:transparent;font:inherit;color:inherit;outline:none;border-radius:4px;padding:1px 3px" onfocus="this.style.background='#fff';this.style.borderColor='#e2e8f0'" onblur="this.style.background='transparent';this.style.borderColor='transparent'"> → <input value="${item.fin}" onchange="updateMejora(${globalIdx},'fin',this.value)" style="width:78px;border:1px solid transparent;background:transparent;font:inherit;color:inherit;outline:none;border-radius:4px;padding:1px 3px" onfocus="this.style.background='#fff';this.style.borderColor='#e2e8f0'" onblur="this.style.background='transparent';this.style.borderColor='transparent'"></span>
           </div>
-          <div>
-            <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;flex-wrap:wrap"><span style="font-size:13px;font-weight:700;color:#0f172a;line-height:1.4;flex:1">${item.mejora}</span></div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;align-items:center">
-              <span style="font-size:10px;font-weight:700;background:${pc.bg};color:${pc.text};padding:2px 9px;border-radius:20px;border:1px solid ${pc.dot}44">${pc.emoji} ${item.prioridad}</span>
-              <span style="font-size:10px;font-weight:700;color:${IMP_COLOR(item.impacto)}">↑ Impacto ${item.impacto}</span>
-              <span style="font-size:10px;color:#64748b">👤 ${item.responsable}</span>
-              <span style="font-size:10px;color:#64748b">📅 <input value="${item.inicio}" onchange="updateMejora(${globalIdx},'inicio',this.value)" style="width:78px;border:1px solid transparent;background:transparent;font:inherit;color:inherit;outline:none;border-radius:4px;padding:1px 3px" onfocus="this.style.background='#fff';this.style.borderColor='#e2e8f0'" onblur="this.style.background='transparent';this.style.borderColor='transparent'"> → <input value="${item.fin}" onchange="updateMejora(${globalIdx},'fin',this.value)" style="width:78px;border:1px solid transparent;background:transparent;font:inherit;color:inherit;outline:none;border-radius:4px;padding:1px 3px" onfocus="this.style.background='#fff';this.style.borderColor='#e2e8f0'" onblur="this.style.background='transparent';this.style.borderColor='transparent'"></span>
-            </div>
-            <div style="font-size:11px;color:#374151;line-height:1.6;padding:10px 12px;background:#f8f9fb;border-radius:8px;border-left:3px solid #3b5bdb">${item.mitigacion}</div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><select onchange="updateMejora(${globalIdx},'status',this.value)" style="background:${sc.bg};color:${sc.text};border:none;border-radius:20px;padding:4px 10px;font-size:10px;font-weight:700;outline:none;cursor:pointer">${STATUSES.map(s=>`<option value="${s}" ${s===item.status?'selected':''}>${s}</option>`).join('')}</select><button onclick="deleteMejora(${globalIdx})" title="Eliminar RF" style="border:none;background:transparent;color:#cbd5e1;font-size:13px;cursor:pointer;padding:2px 6px;border-radius:4px" onmouseover="this.style.color='#ef4444';this.style.background='#fef2f2'" onmouseout="this.style.color='#cbd5e1';this.style.background='transparent'">✕ eliminar</button></div>
-        </div>`;
+          <div style="font-size:11px;color:#374151;line-height:1.6;padding:10px 12px;background:#f8f9fb;border-radius:8px;border-left:3px solid #3b5bdb">${item.mitigacion}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+          <select onchange="updateMejora(${globalIdx},'status',this.value)" style="background:${sc.bg};color:${sc.text};border:none;border-radius:20px;padding:4px 10px;font-size:10px;font-weight:700;outline:none;cursor:pointer">${STATUSES.map(s=>`<option value="${s}" ${s===item.status?'selected':''}>${s}</option>`).join('')}</select>
+          <button onclick="deleteMejora(${globalIdx})" title="Eliminar RF" style="border:none;background:transparent;color:#cbd5e1;font-size:13px;cursor:pointer;padding:2px 6px;border-radius:4px" onmouseover="this.style.color='#ef4444';this.style.background='#fef2f2'" onmouseout="this.style.color='#cbd5e1';this.style.background='transparent'">✕ eliminar</button>
+        </div>
+      </div>`;
     };
     let html='';
     if(sortMode==='prioridad'){
       ['Crítica','Alta','Media','Baja'].forEach(pri=>{
         const priItems=filtered.filter(item=>item.prioridad===pri);
-        if(priItems.length===0) return;
+        if(!priItems.length) return;
         const pc=PRI_CONFIG[pri];
         html+=`<div style="padding:10px 18px;background:${pc.bg};border-bottom:1px solid ${pc.dot}33;border-left:4px solid ${pc.dot};display:flex;align-items:center;gap:10px"><span style="font-size:12px;font-weight:800;color:${pc.text}">${pc.emoji} ${pri}</span><span style="font-size:9px;background:#fff;color:#5b6677;padding:2px 8px;border-radius:20px;font-weight:700;border:1px solid ${pc.dot}44">${priItems.length} RF</span></div>`;
         priItems.forEach(item=>{ html+=renderItem(item); });
@@ -796,7 +908,7 @@ function render360() {
       const n=c==='Todas'?cat.items.length:cat.items.filter(it=>splitCelulas(it.responsable).includes(c)).length;
       const cc=c==='Todas'?'#0f172a':'#3b5bdb';
       const safe=c.replace(/'/g,"\\'");
-      return`<button onclick="window._rfCelFilter='${safe}';render360()" style="border:1px solid ${active?cc:'#e2e8f0'};background:${active?cc:'#fff'};color:${active?'#fff':'#64748b'};padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:5px">${c==='Todas'?'👥 Todas':'🧩 '+c}<span style="background:${active?'rgba(255,255,255,.22)':'#f1f5f9'};color:${active?'#fff':'#94a3b8'};border-radius:8px;padding:0 5px;font-size:9px;font-family:'JetBrains Mono',monospace">${n}</span></button>`;
+      return`<button onclick="window._rfCelFilter='${safe}';render360()" style="border:1px solid ${active?cc:'#e2e8f0'};background:${active?cc:'#fff'};color:${active?'#fff':'#64748b'};padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:5px">${c==='Todas'?'👥 Todas':'🧩 '+c}<span style="background:${active?'rgba(255,255,255,.22)':'#f1f5f9'};color:${active?'#fff':'#94a3b8'};border-radius:8px;padding:0 5px;font-size:9px">${n}</span></button>`;
     }).join('');
     const sortModeBtns=['flujo','prioridad'].map(mode=>{
       const active=(window._rfSortMode||'flujo')===mode;
@@ -805,10 +917,7 @@ function render360() {
     }).join('');
     table.innerHTML=`
       <div style="padding:10px 18px;background:#0f172a;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-        <div>
-          <div style="font-size:9px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.1em">RF · Fase II · Trustonic</div>
-          <div style="font-size:15px;font-weight:800;color:#fff;line-height:1.2">${cat.items.length} Requerimientos Funcionales</div>
-        </div>
+        <div><div style="font-size:9px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.1em">RF · Fase II · Trustonic</div><div style="font-size:15px;font-weight:800;color:#fff;line-height:1.2">${cat.items.length} Requerimientos Funcionales</div></div>
         <div style="margin-left:auto;display:flex;gap:12px;align-items:center">
           <span style="font-size:12px;font-weight:800;color:#f97316">🟠 ${counts['Crítica']}</span>
           <span style="font-size:12px;font-weight:800;color:#eab308">🟡 ${counts['Alta']}</span>
@@ -823,11 +932,7 @@ function render360() {
           <button onclick="addMejora()" style="border:1px solid #3b5bdb;background:#3b5bdb;color:#fff;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap">＋ Agregar RF</button>
           <span style="font-size:10px;color:#94a3b8;white-space:nowrap">${filtered.length}/${cat.items.length} RF · ${doneCount} ✓</span>
         </div>
-        <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">
-          ${priFilterBtns}
-          <span style="width:1px;height:14px;background:#e2e8f0;flex-shrink:0;align-self:center;margin:0 3px"></span>
-          ${celFilterBtns}
-        </div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">${priFilterBtns}<span style="width:1px;height:14px;background:#e2e8f0;flex-shrink:0;align-self:center;margin:0 3px"></span>${celFilterBtns}</div>
       </div>
       ${filtered.length===0?`<div style="padding:32px;text-align:center;color:#94a3b8;font-size:12px">Sin resultados para los filtros activos</div>`:''}
     `+html;
@@ -840,26 +945,28 @@ function render360() {
 }
 function updateMejora(idx,field,val){RISKS_360[3].items[idx][field]=val;render360();saveState();}
 function deleteMejora(idx){if(!confirm('¿Eliminar este RF / mejora?'))return;RISKS_360[3].items.splice(idx,1);render360();saveState();}
-function addMejora(){const mejora=prompt('Nombre del nuevo RF / mejora:');if(!mejora)return;const rf=prompt('Código RF (ej. RF 2.22):','RF 2.');RISKS_360[3].items.push({rf:rf||'RF nuevo',mejora:mejora,flujo:'📊 Monitoreo',impacto:'Medio',prioridad:'Media',responsable:'Sin asignar',inicio:'',fin:'',mitigacion:'',status:'Pendiente'});render360();saveState();}
+function addMejora(){const mejora=prompt('Nombre del nuevo RF / mejora:');if(!mejora)return;const rf=prompt('Código RF (ej. RF 2.22):','RF 2.');RISKS_360[3].items.push({rf:rf||'RF nuevo',mejora,flujo:'📊 Monitoreo',impacto:'Medio',prioridad:'Media',responsable:'Sin asignar',inicio:'',fin:'',mitigacion:'',status:'Pendiente'});render360();saveState();}
 function select360(i){current360=i;render360();}
 
+// ════════════════════════════════
+// ALERT PANEL
+// ════════════════════════════════
 const RADAR_ALERTS=[
-  {icon:"🟠",title:"DES / Ventas por despacho sin cobertura Trustonic",detail:"Canal de despachos no envía señal a Trustonic al entregar el equipo. IMEIs quedan sin registrar.",urgency:"Crítica"},
+  {icon:"🟠",title:"DES / Ventas por despacho sin cobertura Trustonic",detail:"Canal de despachos no envía señal a Trustonic al entregar el equipo.",urgency:"Crítica"},
   {icon:"⚖️",title:"Ley 2300 — Notificaciones Trustonic",detail:"Iniciativa 10889 con cumplimiento obligatorio. Riesgo legal si no entra en Fase II.",urgency:"Crítica"},
-  {icon:"🔁",title:"Anulaciones y devoluciones sin automatización",detail:"Cambios de dispositivo se procesan de forma manual — riesgo de IMEI duplicado o perdido.",urgency:"Crítica"},
-  {icon:"🔔",title:"Webhook Trustonic no implementado",detail:"Sin confirmación automática de bloqueo/desbloqueo. El equipo verifica manualmente hoy.",urgency:"Alta"},
+  {icon:"🔁",title:"Anulaciones y devoluciones sin automatización",detail:"Cambios de dispositivo se procesan de forma manual — riesgo de IMEI duplicado.",urgency:"Crítica"},
+  {icon:"🔔",title:"Webhook Trustonic no implementado",detail:"Sin confirmación automática de bloqueo/desbloqueo. El equipo verifica manualmente.",urgency:"Alta"},
   {icon:"📊",title:"Gestor IMEI sin estado Trustonic visible",detail:"No hay visibilidad en tiempo real del estado del dispositivo desde el gestor.",urgency:"Alta"},
-  {icon:"🔌",title:"Cuenta genérica para integraciones pendiente",detail:"Credenciales personales en producción — riesgo de seguridad activo. Debe resolverse antes de go-live.",urgency:"Baja"},
+  {icon:"🔌",title:"Cuenta genérica para integraciones pendiente",detail:"Credenciales personales en producción — riesgo de seguridad activo.",urgency:"Baja"},
 ];
 const URGENCY_STYLE={"Crítica":{border:"#f97316",bg:"#fff7ed",badge:"#fff7ed",badgeTx:"#ea580c"},"Alta":{border:"#eab308",bg:"#fefce8",badge:"#fefce8",badgeTx:"#ca8a04"},"Media":{border:"#22c55e",bg:"#f0fdf4",badge:"#f0fdf4",badgeTx:"#16a34a"},"Baja":{border:"#ef4444",bg:"#fef2f2",badge:"#fef2f2",badgeTx:"#dc2626"}};
 
-function parseDate(str){const[d,m,y]=str.split('/');return new Date(+y,+m-1,+d);}
-function daysUntil(dateStr){const today=new Date();today.setHours(0,0,0,0);return Math.ceil((parseDate(dateStr)-today)/(1000*60*60*24));}
+function parseDate(str){if(!str)return null;const[d,m,y]=str.split('/');const dt=new Date(+y,+m-1,+d);return isNaN(dt.getTime())?null:dt;}
+function daysUntil(dateStr){const today=new Date();today.setHours(0,0,0,0);const d=parseDate(dateStr);if(!d)return null;return Math.ceil((d-today)/(1000*60*60*24));}
 
-function renderAlertPanel() {
-  const panel=document.getElementById('alert-panel');
-  if(!panel) return;
-  const nextRF=[...RISKS_360[3].items].filter(r=>r.status!=='Hecho').map(r=>({...r,days:daysUntil(r.inicio)})).sort((a,b)=>a.days-b.days)[0];
+function renderAlertPanel(){
+  const panel=document.getElementById('alert-panel'); if(!panel) return;
+  const nextRF=[...RISKS_360[3].items].filter(r=>r.status!=='Hecho').map(r=>({...r,days:daysUntil(r.inicio)})).filter(r=>r.days!==null).sort((a,b)=>a.days-b.days)[0];
   const critCount=RADAR_ALERTS.filter(a=>a.urgency==='Crítica').length;
   const altCount=RADAR_ALERTS.filter(a=>a.urgency==='Alta').length;
   panel.innerHTML=`
@@ -879,25 +986,61 @@ function renderAlertPanel() {
     </div>`;
 }
 
+// ════════════════════════════════
+// JOURNEY
+// ════════════════════════════════
+function renderJourney(){
+  const track=document.getElementById('journey-track'); track.innerHTML='';
+  STEPS.forEach((s,idx)=>{
+    const isActive=selectedStep===idx;
+    const criticals=s.risks.filter(r=>r.priority==='Crítica').length;
+    const rfCount=(s.rfRefs||[]).length;
+    const borderColor=isActive?'#3b5bdb':criticals>0?'#f97316':'#cbd5e1';
+    const bg=isActive?'#3b5bdb':'#ffffff';
+    const shadow=isActive?'0 0 0 4px rgba(59,91,219,.15),0 4px 12px rgba(15,23,42,.08)':criticals>0?'0 0 0 3px rgba(249,115,22,.12),0 1px 4px rgba(15,23,42,.06)':'0 1px 3px rgba(15,23,42,.05)';
+    const critBadge=criticals>0&&!isActive?`<div class="step-critical-badge">${criticals}</div>`:'';
+    const dots=s.risks.map(r=>`<div class="step-dot" style="background:${RISK_COLORS[r.type].dot}"></div>`).join('');
+    const rfBadge=rfCount>0?`<div style="background:var(--brand-soft);color:var(--brand);font-size:9px;font-weight:800;padding:2px 8px;border-radius:10px;font-family:'JetBrains Mono',monospace;border:1px solid #c7d2fe">${rfCount} RF</div>`:`<div style="background:transparent;color:#cbd5e1;font-size:9px;font-weight:600;padding:2px 6px">— sin RF</div>`;
+    const node=document.createElement('div'); node.style.display='flex'; node.style.alignItems='center';
+    node.innerHTML=`<div class="step-node" onclick="selectStep(${idx})" style="cursor:pointer"><div class="step-circle ${isActive?'active':''}" style="border-color:${borderColor};background:${bg};box-shadow:${shadow}">${s.icon}${critBadge}</div><div class="step-num ${isActive?'active':''}">PASO ${s.id}</div><div class="step-name ${isActive?'active':''}">${s.name}</div><div class="step-actor">${s.actor}</div>${rfBadge}<div class="step-dots">${dots}</div></div>${idx<STEPS.length-1?'<div class="step-connector"></div>':''}`;
+    track.appendChild(node);
+  });
+  const leg=document.getElementById('journey-legend');
+  leg.innerHTML=Object.entries(RISK_COLORS).map(([k,v])=>`<div class="legend-item"><div class="legend-dot" style="background:${v.dot}"></div>${v.label}</div>`).join('')+`<div class="legend-item"><div class="legend-dot" style="background:#f97316"></div>Riesgo crítico</div>`;
+  const pw=document.getElementById('detail-panel-wrap');
+  if(selectedStep===null){pw.innerHTML=`<div class="empty-panel">Selecciona una etapa del journey para ver riesgos y mejoras</div>`;return;}
+  const step=STEPS[selectedStep];
+  const riskCards=step.risks.map(r=>{const rc=RISK_COLORS[r.type];const pc=PRI_CONFIG[r.priority]||{dot:'#64748b'};return`<div class="risk-card" style="border:1px solid ${rc.dot}33;border-left:3px solid ${rc.dot}"><div class="risk-tags"><span class="risk-type-badge" style="background:${rc.bg};color:${rc.text}">${rc.label}</span><span class="risk-pri" style="color:${pc.dot}">● ${r.priority}</span></div><div class="risk-text">${r.text}</div></div>`;}).join('');
+  const imprCards=(step.rfRefs||[]).map(ref=>{
+    const rf=RISKS_360[3].items.find(it=>it.rf===ref);
+    if(!rf) return `<div class="impr-card"><div class="impr-text" style="color:#dc2626">⚠ ${ref} no encontrado</div></div>`;
+    const pc=PRI_CONFIG[rf.prioridad]||PRI_CONFIG['Media'];
+    const sc=STATUS_CONFIG[rf.status]||STATUS_CONFIG['Pendiente'];
+    return `<div class="impr-card" style="border-left:3px solid ${pc.dot}">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap">
+        <span style="background:#0f172a;color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:5px;font-family:'JetBrains Mono',monospace">${rf.rf}</span>
+        <span style="font-size:9px;font-weight:700;background:${pc.bg};color:${pc.text};padding:2px 8px;border-radius:10px;border:1px solid ${pc.dot}55">${pc.emoji} ${rf.prioridad}</span>
+        <span style="font-size:9px;font-weight:600;background:${sc.bg};color:${sc.text};padding:2px 8px;border-radius:10px">${rf.status}</span>
+      </div>
+      <div style="font-size:12px;font-weight:700;color:#0f172a;line-height:1.4;margin-bottom:5px">${rf.mejora}</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:10px;color:#64748b;margin-bottom:6px"><span>👤 ${rf.responsable}</span><span>📅 ${rf.inicio} → ${rf.fin}</span></div>
+      <div style="font-size:11px;color:#475569;line-height:1.5">${rf.mitigacion}</div>
+    </div>`;
+  }).join('');
+  const emptyImpr=`<div style="border:1.5px dashed var(--border);border-radius:var(--r-sm);padding:18px;text-align:center;color:#94a3b8;font-size:11px;line-height:1.5">Este paso del flujo no tiene<br>requerimientos funcionales asociados<br>en Fase II</div>`;
+  const rfCount=(step.rfRefs||[]).length;
+  pw.innerHTML=`<div class="detail-panel"><div class="detail-header"><div class="detail-icon">${step.icon}</div><div><div class="detail-sub">Paso ${step.id} · ${step.actor}</div><div class="detail-name">${step.name}</div></div><button class="detail-close" onclick="selectStep(null)">✕</button></div><div class="detail-desc">${step.desc}</div><div class="detail-grid"><div><div class="detail-col-title">⚠ Riesgos identificados <span style="background:var(--surface-2);color:var(--text-muted);font-size:10px;padding:1px 7px;border-radius:10px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace">${step.risks.length}</span></div>${riskCards}</div><div><div class="detail-col-title">✨ RF asociados <span style="background:var(--brand-soft);color:var(--brand);font-size:10px;padding:1px 7px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-weight:800">${rfCount}</span></div>${rfCount>0?imprCards:emptyImpr}</div></div></div>`;
+}
+function selectStep(idx){selectedStep=(selectedStep===idx)?null:idx;renderJourney();}
+
 // ── ARRANQUE ──
 function _renderAll(){
-  renderPhases();
-  render360();
-  renderJourney();
-  // si la pestaña de hitos está visible, refrescarla también
-  const mc=document.getElementById('milestones-container');
-  if(mc && mc.offsetParent!==null) renderMilestones();
+  renderPhases(); render360(); renderJourney();
+  if(document.getElementById('milestones-container')&&document.getElementById('sub-hitos').style.display!=='none') renderMilestones();
 }
-
-// Render inmediato con los datos locales (para que nunca se vea en blanco)…
 _renderAll();
-
-// …y luego conectamos a la nube y, si hay datos guardados, re-renderizamos con ellos.
 (async function(){
-  if(_initSupabase()){
-    await _loadState();
-    _renderAll();
-  }
+  if(_initSupabase()){ await _loadState(); _renderAll(); }
 })();
 </script>
 </body></html>
