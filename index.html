@@ -220,6 +220,61 @@
     .milestone-body{grid-template-columns:38px 1fr}
     .m-controls{flex-direction:row;flex-wrap:wrap}
   }
+
+  /* ── INICIATIVAS ── */
+  .ini-rm-grid{display:grid;grid-template-columns:190px repeat(5,1fr)}
+  .ini-rm-cell{padding:8px 10px;border-right:0.5px solid var(--border-soft);border-bottom:1px solid var(--border-soft)}
+  .ini-rm-cell:last-child{border-right:none}
+  .ini-rm-head{font-size:10px;font-weight:700;color:var(--text-faint);text-transform:uppercase;letter-spacing:.08em;text-align:center;background:#f8f9fb}
+  .ini-rm-label{display:flex;flex-direction:column;gap:3px;justify-content:center}
+  .ini-rm-num{font-size:10px;font-weight:700}
+  .ini-rm-name{font-size:11px;font-weight:600;color:var(--ink);line-height:1.3}
+  .ini-rm-bar{border-radius:4px;padding:2px 7px;font-size:10px;font-weight:700;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'JetBrains Mono',monospace}
+
+  .ini-filter-btn{border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:600;color:var(--text-muted);background:var(--surface);cursor:pointer;transition:all .15s;font-family:inherit}
+  .ini-filter-btn:hover{border-color:#cbd5e1;color:var(--text)}
+  .ini-filter-btn.active{color:#fff;border-color:transparent}
+
+  .ini-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow-sm)}
+  .ini-section-header{display:flex;align-items:center;gap:10px;padding:14px 18px;cursor:pointer;transition:background .15s;user-select:none}
+  .ini-section-header:hover{background:var(--surface-2)}
+  .ini-section-badge{font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+  .ini-section-title{font-size:14px;font-weight:700;color:var(--ink);letter-spacing:-.1px}
+  .ini-frente-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:10px;flex-shrink:0}
+  .ini-section-meta{font-size:11px;color:var(--text-faint);margin-left:auto;font-weight:500}
+  .ini-section-toggle{font-size:13px;color:var(--text-faint);transition:transform .18s;flex-shrink:0}
+  .ini-section-toggle.open{transform:rotate(180deg)}
+  .ini-section-body{border-top:1px solid var(--border-soft)}
+  .ini-section-desc{padding:10px 18px;font-size:12px;color:var(--text-muted);line-height:1.6;border-bottom:1px solid var(--border-soft);background:var(--surface-2)}
+
+  .ini-rf-list{padding:10px 14px;display:flex;flex-direction:column;gap:6px}
+  .ini-rf-card{background:var(--surface-2);border:1px solid var(--border-soft);border-radius:var(--r-md);overflow:hidden}
+  .ini-rf-header{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;transition:background .15s;flex-wrap:wrap}
+  .ini-rf-header:hover{background:var(--surface)}
+  .ini-rf-code{font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+  .ini-rf-name{font-size:13px;font-weight:600;color:var(--ink);flex:1;min-width:120px;line-height:1.3}
+  .ini-rf-frente{font-size:10px;font-weight:600;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);padding:2px 8px;border-radius:8px;white-space:nowrap}
+  .ini-rf-pri{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0}
+  .ini-rf-toggle{font-size:12px;color:var(--text-faint);transition:transform .15s;flex-shrink:0}
+  .ini-rf-toggle.open{transform:rotate(180deg)}
+  .ini-rf-body{padding:12px 14px;border-top:1px solid var(--border-soft);background:var(--surface)}
+  .ini-rf-desc{font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:10px;padding:9px 12px;background:var(--surface-2);border-radius:var(--r-sm);border-left:3px solid var(--brand)}
+  .ini-rf-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--text-faint);margin-bottom:10px}
+
+  .ini-tasks{border-top:1px solid var(--border-soft);padding-top:10px;margin-top:4px}
+  .ini-tasks-hd{font-size:11px;font-weight:700;color:var(--text-faint);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .ini-task-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12px;border-bottom:1px solid var(--border-soft)}
+  .ini-task-row:last-of-type{border-bottom:none}
+  .ini-task-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .ini-task-text{flex:1;color:#334155;line-height:1.4}
+  .ini-task-sel{border:none;border-radius:10px;padding:2px 8px;font-size:10px;font-weight:600;outline:none;cursor:pointer;font-family:inherit}
+  .ini-task-del{border:none;background:transparent;color:#e2e8f0;font-size:13px;cursor:pointer;padding:0 3px;border-radius:4px;transition:all .15s}
+  .ini-task-del:hover{background:#fef2f2;color:#ef4444}
+  .ini-task-add-row{display:flex;gap:7px;margin-top:8px}
+  .ini-task-add-input{flex:1;border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:12px;outline:none;background:#fff;transition:border-color .15s;font-family:inherit;color:var(--ink)}
+  .ini-task-add-input:focus{border-color:var(--brand)}
+  .ini-task-add-btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:8px;padding:6px 13px;font-size:12px;font-weight:600;transition:opacity .15s;font-family:inherit}
+  .ini-task-add-btn:hover{opacity:.88}
 </style>
 </head>
 <body>
@@ -231,11 +286,11 @@
       <div class="topbar-title">Centro de Proyecto <span>#10767</span></div>
     </div>
     <div class="topbar-meta">📅 01 Jun → 01 Nov 2026 · <strong style="color:var(--ink)">153 días</strong></div>
-    <span class="badge">En progreso</span>
+    <span id="project-status-badge" class="badge">⚠ Bloqueado</span>
     <div class="kpi-strip">
-      <div class="kpi-pill"><div class="kpi-num">21</div><div class="kpi-lbl">RF</div></div>
-      <div class="kpi-pill"><div class="kpi-num" style="color:#f97316">4</div><div class="kpi-lbl">Crítica</div></div>
-      <div class="kpi-pill"><div class="kpi-num" style="color:#eab308">14</div><div class="kpi-lbl">Alta</div></div>
+      <div class="kpi-pill"><div class="kpi-num" id="kpi-rf">21</div><div class="kpi-lbl">RF</div></div>
+      <div class="kpi-pill"><div class="kpi-num" id="kpi-crit" style="color:#f97316">4</div><div class="kpi-lbl">Crítica</div></div>
+      <div class="kpi-pill"><div class="kpi-num" id="kpi-alta" style="color:#eab308">14</div><div class="kpi-lbl">Alta</div></div>
     </div>
   </div>
   <div class="main-nav">
@@ -247,6 +302,7 @@
       <div class="nav-label">🗺 Journey</div>
       <div class="nav-sub">Credicelular · Riesgos</div>
     </button>
+
   </div>
 </div>
 
@@ -262,9 +318,15 @@
     <div id="phases-container"></div>
   </div>
   <div id="sub-hitos" style="display:none">
-    <div class="hint">Ordenado por prioridad. Cada hito tiene su propia lista de tareas con drag & drop para priorizar.</div>
     <div id="milestones-summary" class="summary-strip"></div>
     <div id="milestones-container" style="margin-top:16px"></div>
+    <div id="hitos-ini-wrap" style="margin-top:24px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border)">
+        <div style="font-size:13px;font-weight:700;color:var(--ink)">Requerimientos por Iniciativa y Frente</div>
+        <div id="hitos-ini-filterbar" style="display:flex;gap:6px;flex-wrap:wrap;margin-left:4px"></div>
+      </div>
+      <div id="hitos-ini-sections"></div>
+    </div>
   </div>
   <div id="sub-p360">
     <div class="hint">Visión consolidada — riesgos futuros, imprevistos y mejoras estratégicas.</div>
@@ -278,6 +340,7 @@
     </div>
   </div>
 </div>
+
 
 <div id="sec-journey" class="content" style="display:none">
   <div class="subtabs">
@@ -320,6 +383,7 @@ async function _loadState(){
       PHASES = cloud.PHASES; MILESTONES = cloud.MILESTONES; RISKS_360 = cloud.RISKS_360;
       // migrar tareas si no existen
       MILESTONES.forEach(m=>{ if(!m.tasks) m.tasks=[]; });
+      if(cloud.FRENTE_GROUPS) FRENTE_GROUPS = cloud.FRENTE_GROUPS;
     } else {
       await _saveStateNow();
     }
@@ -330,7 +394,7 @@ async function _loadState(){
 async function _saveStateNow(){
   if(!_sb) return;
   try{
-    const payload = { id:1, data:{ PHASES, MILESTONES, RISKS_360 }, updated_at:new Date().toISOString() };
+    const payload = { id:1, data:{ PHASES, MILESTONES, RISKS_360, FRENTE_GROUPS }, updated_at:new Date().toISOString() };
     const { error } = await _sb.from('dashboard_state').upsert(payload, { onConflict:'id' });
     if(error) throw error; _flashSaved();
   }catch(e){ console.error('[Trustonic] Error guardando:',e); _flashSaved(false); }
@@ -351,6 +415,7 @@ function _subscribeRealtime(){
         if(cloud && cloud.PHASES){
           PHASES=cloud.PHASES; MILESTONES=cloud.MILESTONES; RISKS_360=cloud.RISKS_360;
           MILESTONES.forEach(m=>{ if(!m.tasks) m.tasks=[]; });
+          if(cloud.FRENTE_GROUPS) FRENTE_GROUPS=cloud.FRENTE_GROUPS;
           renderPhases(); render360();
           if(document.getElementById('sub-hitos').style.display!=='none') renderMilestones();
         }
@@ -777,56 +842,559 @@ function renderMilestoneTimeline(){
 function renderMilestones(){
   const container=document.getElementById('milestones-container');
   container.innerHTML=renderMilestoneTimeline();
-  const sorted=[...MILESTONES].sort((a,b)=>(PRI_ORDER[a.priority]??9)-(PRI_ORDER[b.priority]??9));
-  const listEl=document.createElement('div');
-  listEl.innerHTML=sorted.map((m,idx)=>{
-    const pc=PRI_CONFIG[m.priority]||PRI_CONFIG['Media'];
-    const sc=STATUS_CONFIG[m.status]||STATUS_CONFIG['Pendiente'];
-    const pNum={"Crítica":1,"Alta":2,"Media":3,"Baja":4}[m.priority]||4;
-    const bars=[1,2,3,4,5].map(i=>`<div class="impact-bar" style="background:${i<=m.impact?pc.dot:'#e2e8f0'}"></div>`).join('');
-    if(!m.tasks) m.tasks=[];
-    const taskDone=m.tasks.filter(t=>t.status==='Hecho').length;
-    const taskTotal=m.tasks.length;
-    return `<div class="milestone-card" style="border-left:3px solid ${pc.dot}">
-      <div class="milestone-body">
-        <div class="m-rank" style="border:1.5px solid ${pc.dot};color:${pc.dot}">${idx+1}</div>
-        <div>
-          <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap">
-            <span style="background:#0f172a;color:#fff;font-size:8px;font-weight:800;padding:2px 7px;border-radius:5px">${m.rf}</span>
-            <span style="background:${pc.bg};color:${pc.text};font-size:8px;font-weight:800;padding:2px 8px;border-radius:10px;border:1px solid ${pc.dot}55">${pc.emoji} P${pNum} · ${m.priority}</span>
-            <span style="font-size:9px;color:#94a3b8;background:#f1f3f7;border:1px solid #e4e7ee;padding:1px 7px;border-radius:10px;font-weight:700">~ Fecha proyectada</span>
-            ${taskTotal>0?`<span style="font-size:9px;background:${taskDone===taskTotal?'#dcfce7':'#eef2ff'};color:${taskDone===taskTotal?'#15803d':'#3b5bdb'};border:1px solid ${taskDone===taskTotal?'#bbf7d0':'#c7d2fe'};padding:1px 8px;border-radius:10px;font-weight:700">✓ ${taskDone}/${taskTotal} tareas</span>`:''}
-          </div>
-          <div class="m-friction">⚡ ${m.friction}</div>
-          <div class="m-name">${m.name}</div>
-          <div class="m-meta">
-            <span class="m-date">📅 <input value="${m.when}" onchange="updateMilestone('${m.id}','when',this.value)" style="width:90px;border:1px solid transparent;background:transparent;font:inherit;color:inherit;outline:none;border-radius:4px;padding:1px 4px" onfocus="this.style.background='#fff';this.style.borderColor='#e2e8f0'" onblur="this.style.background='transparent';this.style.borderColor='transparent'"></span>
-            <span class="m-phase">📌 ${m.phase}</span>
-          </div>
-          <div class="m-impact-desc">→ ${m.impactDesc}</div>
-          <div class="impact-bars">${bars}<span class="impact-label">Impacto ${m.impact}/5</span></div>
-        </div>
-        <div class="m-controls">
-          <select class="status-sel" style="background:${sc.bg};color:${sc.text}" onchange="updateMilestone('${m.id}','status',this.value)">${STATUSES.map(s=>`<option value="${s}" ${s===m.status?'selected':''}>${s}</option>`).join('')}</select>
-          <select class="m-pri-sel" onchange="updateMilestone('${m.id}','priority',this.value)">${['Crítica','Alta','Media','Baja'].map(p=>`<option value="${p}" ${p===m.priority?'selected':''}>${p}</option>`).join('')}</select>
-        </div>
-      </div>
-      <div id="ts-${m.id}">${renderTaskList(m.id)}</div>
-    </div>`;
-  }).join('');
-  container.appendChild(listEl);
-
   const s=document.getElementById('milestones-summary');
   const counts=['Crítica','Alta','Media','Baja'].map(p=>({p,cnt:MILESTONES.filter(m=>m.priority===p).length}));
   s.innerHTML=counts.map(({p,cnt})=>`<div class="summary-item"><div class="summary-count" style="color:${PRI_CONFIG[p].dot}">${PRI_CONFIG[p].emoji} ${cnt}</div><div class="summary-label">RF ${p}</div></div>`).join('')+
     `<div class="summary-item summary-divider"><div class="summary-count" style="color:#0f172a">${MILESTONES.length}</div><div class="summary-label">Total RF</div></div>`+
     `<div style="margin-left:auto;align-self:center;background:#f1f3f7;border:1px solid #e4e7ee;border-radius:8px;padding:6px 14px;display:flex;align-items:center;gap:6px"><span>⚠️</span><span style="font-size:10px;font-weight:700;color:#5b6677">Fechas proyectadas — estimación pendiente</span></div>`;
+  _buildHitosHeader();
+  _buildHitosGroups();
 }
 
 function updateMilestone(id,field,val){
   const m=MILESTONES.find(m=>m.id===id);
-  if(m) m[field]=val;
+  if(m){ m[field]=val; saveState(); _buildHitosGroups(); updateProjectStatus(); }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// HITOS — GRUPOS DINÁMICOS (iniciativas + frentes) con drag&drop
+// ═══════════════════════════════════════════════════════════════
+
+// Grupos fijos: 4 iniciativas formales
+const FIXED_GROUPS = [
+  { id:'10767', name:'Extensión Proyecto Celulares',     num:'Iniciativa 10767', color:'blue',   frente:'Célula Digi / Integraciones', fixed:true },
+  { id:'11126', name:'Evolutivos Gestor IMEI',           num:'Iniciativa 11126', color:'purple', frente:'Gestor IMEIs',                fixed:true },
+  { id:'11113', name:'Disponibilizar Data Gestor IMEI',  num:'Iniciativa 11113', color:'teal',   frente:'Arquitectura / BI',           fixed:true },
+  { id:'10889', name:'Proceso Notificaciones Trustonic', num:'Iniciativa 10889', color:'amber',  frente:'People / PeopleSoft',         fixed:true },
+];
+// Frentes de trabajo predefinidos (mutables: se pueden agregar más)
+let FRENTE_GROUPS = [
+  { id:'fr-digistock',    name:'DigiStock',    num:'Frente de trabajo', color:'blue',  frente:'DigiStock',    fixed:false },
+  { id:'fr-geopos',       name:'GeoPos',       num:'Frente de trabajo', color:'teal',  frente:'GeoPos',       fixed:false },
+  { id:'fr-integraciones',name:'Integraciones',num:'Frente de trabajo', color:'purple',frente:'Integraciones',fixed:false },
+  { id:'fr-sistema',      name:'Sistema',      num:'Frente de trabajo', color:'gray',  frente:'Sistema (sin frente definido)', fixed:false },
+];
+
+// rf.groupId holds the current group assignment (saved in MILESTONES via saveState)
+// On first load, map from legacy RF_TO_INI
+const RF_TO_INI_DEFAULT = {
+  'RF 2.15':'11126','RF 2.19':'11126','RF 2.20':'11126','RF 2.16':'11126','RF 2.17':'11126','RF 2.21':'11126',
+  'RF 2.7': '11113',
+  'RF 2.6': '10889','RF 2.2': '10889','RF 2.10':'10889','RF 2.11':'10889',
+  'RF 2.8': '10767','RF 2.5': '10767','RF 2.3': '10767','RF 2.4': '10767',
+  'RF 2.9': '10767','RF 2.13':'10767','RF 2.18':'10767','RF 2.12':'10767','RF 2.1': '10767','RF 2.14':'10767',
+};
+
+function _ensureGroupIds(){
+  MILESTONES.forEach(m=>{
+    if(!m.groupId) m.groupId = RF_TO_INI_DEFAULT[m.rf]||'fr-sistema';
+  });
+}
+function _allGroups(){ return [...FIXED_GROUPS,...FRENTE_GROUPS]; }
+
+// color map including gray
+const INI_COLORS_FULL = {
+  purple:{bg:'#EEEDFE',bd:'#AFA9EC',tx:'#3C3489',mid:'#534AB7'},
+  teal:  {bg:'#E1F5EE',bd:'#5DCAA5',tx:'#085041',mid:'#0F6E56'},
+  amber: {bg:'#FAEEDA',bd:'#EF9F27',tx:'#633806',mid:'#854F0B'},
+  blue:  {bg:'#E6F1FB',bd:'#85B7EB',tx:'#0C447C',mid:'#185FA5'},
+  gray:  {bg:'#F1EFE8',bd:'#B4B2A9',tx:'#444441',mid:'#5F5E5A'},
+};
+function _gc(color){ return INI_COLORS_FULL[color]||INI_COLORS_FULL.gray; }
+
+let hitosGrpOpen = {};
+let hitosRfOpen  = {};
+let hitosFilter  = 'all';
+// drag state for RF between groups
+let _rfDragId    = null;
+
+function _rfTaskPct(m){
+  if(!m.tasks||!m.tasks.length) return null;
+  return Math.round(m.tasks.filter(t=>t.status==='Hecho').length/m.tasks.length*100);
+}
+function _grpPct(rfsArr){
+  const wt=rfsArr.filter(m=>m.tasks&&m.tasks.length);
+  if(!wt.length) return null;
+  const total=wt.reduce((s,m)=>s+m.tasks.length,0);
+  const done=wt.reduce((s,m)=>s+m.tasks.filter(t=>t.status==='Hecho').length,0);
+  return Math.round(done/total*100);
+}
+
+function _buildHitosHeader(){
+  const bar=document.getElementById('hitos-ini-filterbar');
+  if(!bar) return;
+  bar.innerHTML='';
+  [{id:'all',label:'Todos'},..._allGroups().map(g=>({id:g.id,label:g.fixed?g.id:g.name,color:g.color}))].forEach(b=>{
+    const c=_gc(b.color);
+    const isA=hitosFilter===b.id;
+    const btn=document.createElement('button');
+    btn.className='ini-filter-btn'+(isA?' active':'');
+    btn.textContent=b.label;
+    if(isA){btn.style.background=c.mid;btn.style.borderColor=c.mid;btn.style.color='#fff';}
+    btn.onclick=()=>{ hitosFilter=b.id; _buildHitosHeader(); _buildHitosGroups(); };
+    bar.appendChild(btn);
+  });
+  // ＋ Nuevo frente
+  const addBtn=document.createElement('button');
+  addBtn.className='ini-filter-btn';
+  addBtn.style.cssText='border-style:dashed;color:var(--brand)';
+  addBtn.textContent='＋ Nuevo frente';
+  addBtn.onclick=()=>_showNewFrenteModal();
+  bar.appendChild(addBtn);
+  // ＋ Nuevo RF
+  const rfBtn=document.createElement('button');
+  rfBtn.className='ini-filter-btn';
+  rfBtn.style.cssText='background:var(--brand);color:#fff;border-color:var(--brand)';
+  rfBtn.textContent='＋ Agregar RF';
+  rfBtn.onclick=()=>_showNewRfModal();
+  bar.appendChild(rfBtn);
+}
+
+function _buildHitosGroups(){
+  _ensureGroupIds();
+  updateProjectStatus();
+  const wrap=document.getElementById('hitos-ini-sections');
+  if(!wrap) return;
+  wrap.innerHTML='';
+  const groups=hitosFilter==='all'?_allGroups():_allGroups().filter(g=>g.id===hitosFilter);
+  groups.forEach(grp=>{
+    const c=_gc(grp.color);
+    const rfsForGrp=MILESTONES.filter(m=>m.groupId===grp.id);
+    const isOpen=hitosGrpOpen[grp.id]??true;
+    const pct=_grpPct(rfsForGrp);
+    const doneRF=rfsForGrp.filter(m=>m.status==='Hecho').length;
+    const totalT=rfsForGrp.reduce((s,m)=>s+(m.tasks||[]).length,0);
+    const doneT=rfsForGrp.reduce((s,m)=>s+(m.tasks||[]).filter(t=>t.status==='Hecho').length,0);
+    const pctColor=pct===100?'#15803d':pct>=50?'#3b5bdb':pct>0?'#f97316':'#cbd5e1';
+
+    const sec=document.createElement('div');
+    sec.className='ini-section';
+    sec.style.marginBottom='10px';
+    // make group a drop zone for RF
+    sec.setAttribute('data-grp',grp.id);
+    sec.ondragover=e=>{e.preventDefault();sec.style.outline='2px dashed '+c.mid;};
+    sec.ondragleave=()=>{ sec.style.outline=''; };
+    sec.ondrop=e=>{
+      e.preventDefault(); sec.style.outline='';
+      if(_rfDragId){
+        const m=MILESTONES.find(x=>x.id===_rfDragId);
+        if(m){ m.groupId=grp.id; saveState(); _buildHitosGroups(); }
+        _rfDragId=null;
+      }
+    };
+
+    // ── HEADER ──
+    const hdr=document.createElement('div');
+    hdr.className='ini-section-header';
+    hdr.style.cssText='display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;user-select:none';
+
+    // Badge + title
+    const badge=document.createElement('span');
+    badge.className='ini-section-badge';
+    badge.style.cssText=`background:${c.bg};color:${c.tx};border:1px solid ${c.bd};font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;flex-shrink:0`;
+    badge.textContent=grp.num;
+
+    const titleWrap=document.createElement('div');
+    titleWrap.style.cssText='flex:1;min-width:0';
+    titleWrap.innerHTML=`<div style="font-size:14px;font-weight:700;color:var(--ink)">${grp.name}</div><div style="font-size:11px;color:var(--text-muted);margin-top:1px">${grp.frente}</div>`;
+
+    // Progress
+    const prog=document.createElement('div');
+    prog.style.cssText='display:flex;align-items:center;gap:12px;flex-shrink:0';
+    if(pct!==null){
+      prog.innerHTML=`
+        <div style="text-align:right;min-width:36px">
+          <div style="font-size:17px;font-weight:800;color:${pctColor};line-height:1;font-family:'JetBrains Mono',monospace">${pct}%</div>
+          <div style="font-size:9px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em">progreso</div>
+        </div>
+        <div>
+          <div style="width:90px;height:5px;background:var(--border-soft);border-radius:5px;overflow:hidden;margin-bottom:3px">
+            <div style="height:100%;width:${pct}%;background:${pctColor};border-radius:5px;transition:width .4s"></div>
+          </div>
+          <div style="font-size:9px;color:var(--text-faint)">${doneT}/${totalT} tareas · ${doneRF}/${rfsForGrp.length} RF</div>
+        </div>`;
+    } else {
+      prog.innerHTML=`<div style="font-size:11px;color:var(--text-faint)">${rfsForGrp.length} RF</div>`;
+    }
+
+    // Delete frente button (only for non-fixed empty groups)
+    if(!grp.fixed){
+      const delGrp=document.createElement('button');
+      delGrp.title='Eliminar frente';
+      delGrp.style.cssText='border:none;background:transparent;color:#e2e8f0;font-size:13px;cursor:pointer;padding:2px 5px;border-radius:4px;flex-shrink:0';
+      delGrp.textContent='✕';
+      delGrp.onmouseover=()=>{delGrp.style.background='#fef2f2';delGrp.style.color='#ef4444';};
+      delGrp.onmouseout=()=>{delGrp.style.background='transparent';delGrp.style.color='#e2e8f0';};
+      delGrp.onclick=e=>{
+        e.stopPropagation();
+        if(rfsForGrp.length>0){ alert('Mueve los RF a otro grupo antes de eliminar este frente.'); return; }
+        if(!confirm('¿Eliminar el frente "'+grp.name+'"?')) return;
+        FRENTE_GROUPS=FRENTE_GROUPS.filter(fg=>fg.id!==grp.id);
+        _saveFrentesState(); _buildHitosHeader(); _buildHitosGroups();
+      };
+      prog.appendChild(delGrp);
+    }
+
+    const tog=document.createElement('span');
+    tog.className='ini-section-toggle'+(isOpen?' open':'');
+    tog.textContent='▼'; tog.style.marginLeft='6px';
+
+    hdr.appendChild(badge); hdr.appendChild(titleWrap); hdr.appendChild(prog); hdr.appendChild(tog);
+    hdr.onclick=()=>{ hitosGrpOpen[grp.id]=!isOpen; _buildHitosGroups(); };
+    sec.appendChild(hdr);
+
+    if(isOpen){
+      const body=document.createElement('div');
+      body.className='ini-section-body';
+      const rfList=document.createElement('div');
+      rfList.className='ini-rf-list';
+      rfList.style.paddingBottom='8px';
+      if(rfsForGrp.length===0){
+        rfList.innerHTML=`<div style="padding:16px;text-align:center;font-size:12px;color:var(--text-faint);border:1.5px dashed var(--border);border-radius:var(--r-md)">Arrastra RF aquí para asignarlos a este grupo</div>`;
+      } else {
+        [...rfsForGrp].sort((a,b)=>(PRI_ORDER[a.priority]??9)-(PRI_ORDER[b.priority]??9)).forEach(m=>{
+          rfList.appendChild(_buildHitosRfCard(m,c));
+        });
+      }
+      // ＋ RF button inside group
+      const addRfInGrp=document.createElement('button');
+      addRfInGrp.style.cssText='margin:6px 12px 4px;border:1px dashed var(--border);background:transparent;color:var(--brand);font-size:12px;font-weight:600;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:inherit';
+      addRfInGrp.textContent='＋ Agregar RF a este grupo';
+      addRfInGrp.onclick=()=>_showNewRfModal(grp.id);
+      rfList.appendChild(addRfInGrp);
+      body.appendChild(rfList);
+      sec.appendChild(body);
+    }
+    wrap.appendChild(sec);
+  });
+}
+
+// ── BUILD RF CARD ──
+function _buildHitosRfCard(m,c){
+  const pc=PRI_CONFIG[m.priority]||PRI_CONFIG['Media'];
+  const sc=STATUS_CONFIG[m.status]||STATUS_CONFIG['Pendiente'];
+  const isOpen=hitosRfOpen[m.id];
+  if(!m.tasks) m.tasks=[];
+  const done=m.tasks.filter(t=>t.status==='Hecho').length;
+  const total=m.tasks.length;
+  const pct=total>0?Math.round(done/total*100):null;
+  const pctColor=pct===100?'#15803d':pct>=50?'#3b5bdb':pct>0?'#f97316':'#cbd5e1';
+  const key='hrf-'+m.id;
+
+  const card=document.createElement('div');
+  card.className='ini-rf-card';
+  card.style.cssText=`border-left:2px solid ${pc.dot};cursor:grab;`;
+  card.setAttribute('draggable','true');
+  card.ondragstart=e=>{
+    _rfDragId=m.id;
+    e.dataTransfer.effectAllowed='move';
+    card.style.opacity='.45';
+  };
+  card.ondragend=()=>{ card.style.opacity='1'; _rfDragId=null; };
+
+  // ── HEADER ──
+  const hdr=document.createElement('div');
+  hdr.className='ini-rf-header';
+  hdr.style.cssText='display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;flex-wrap:wrap';
+
+  const dragHandle=document.createElement('span');
+  dragHandle.textContent='⠿';
+  dragHandle.style.cssText='color:#cbd5e1;font-size:14px;cursor:grab;flex-shrink:0';
+  dragHandle.title='Arrastra para mover a otro grupo';
+
+  const codeSpan=document.createElement('span');
+  codeSpan.className='ini-rf-code';
+  codeSpan.style.cssText=`background:${c.mid};color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px;font-family:'JetBrains Mono',monospace;flex-shrink:0`;
+  codeSpan.textContent=m.rf;
+
+  const nameSpan=document.createElement('span');
+  nameSpan.style.cssText='font-size:13px;font-weight:600;color:var(--ink);flex:1;min-width:120px;line-height:1.3';
+  nameSpan.textContent=m.name;
+
+  const rightH=document.createElement('div');
+  rightH.style.cssText='display:flex;align-items:center;gap:6px;flex-shrink:0;flex-wrap:wrap';
+
+  if(total>0){
+    const miniBar=document.createElement('div');
+    miniBar.style.cssText='display:flex;align-items:center;gap:5px';
+    miniBar.innerHTML=`<div style="width:40px;height:3px;background:var(--border-soft);border-radius:3px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${pctColor};border-radius:3px"></div></div><span style="font-size:10px;color:${pctColor};font-weight:700;font-family:'JetBrains Mono',monospace">${pct}%</span>`;
+    rightH.appendChild(miniBar);
+  }
+
+  const priSel=document.createElement('select');
+  priSel.className='status-sel';
+  priSel.style.cssText=`background:${pc.bg};color:${pc.text};font-size:10px;padding:3px 8px;border:none;border-radius:20px;font-weight:600;outline:none;cursor:pointer`;
+  ['Crítica','Alta','Media','Baja'].forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=p;if(p===m.priority)o.selected=true;priSel.appendChild(o);});
+  priSel.onclick=e=>e.stopPropagation();
+  priSel.onchange=e=>updateMilestone(m.id,'priority',e.target.value);
+
+  const staSel=document.createElement('select');
+  staSel.className='status-sel';
+  staSel.style.cssText=`background:${sc.bg};color:${sc.text};font-size:10px;padding:3px 8px;border:none;border-radius:20px;font-weight:600;outline:none;cursor:pointer`;
+  STATUSES.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;if(s===m.status)o.selected=true;staSel.appendChild(o);});
+  staSel.onclick=e=>e.stopPropagation();
+  staSel.onchange=e=>updateMilestone(m.id,'status',e.target.value);
+
+  // delete RF button
+  const delRf=document.createElement('button');
+  delRf.title='Eliminar RF';
+  delRf.style.cssText='border:none;background:transparent;color:#e2e8f0;font-size:13px;cursor:pointer;padding:2px 5px;border-radius:4px';
+  delRf.textContent='✕';
+  delRf.onmouseover=()=>{delRf.style.background='#fef2f2';delRf.style.color='#ef4444';};
+  delRf.onmouseout=()=>{delRf.style.background='transparent';delRf.style.color='#e2e8f0';};
+  delRf.onclick=e=>{
+    e.stopPropagation();
+    if(!confirm('¿Eliminar RF '+m.rf+'?')) return;
+    const idx=MILESTONES.findIndex(x=>x.id===m.id);
+    if(idx>-1){ MILESTONES.splice(idx,1); saveState(); renderMilestones(); }
+  };
+
+  const tog=document.createElement('span');
+  tog.className='ini-rf-toggle'+(isOpen?' open':'');
+  tog.textContent='▼';
+
+  rightH.appendChild(priSel); rightH.appendChild(staSel); rightH.appendChild(delRf); rightH.appendChild(tog);
+  hdr.appendChild(dragHandle); hdr.appendChild(codeSpan); hdr.appendChild(nameSpan); hdr.appendChild(rightH);
+  hdr.onclick=e=>{ if(e.target===priSel||e.target===staSel||e.target===delRf) return; hitosRfOpen[m.id]=!hitosRfOpen[m.id]; _buildHitosGroups(); };
+  card.appendChild(hdr);
+
+  if(isOpen){
+    const body=document.createElement('div');
+    body.className='ini-rf-body';
+
+    // editable meta row
+    const topRow=document.createElement('div');
+    topRow.style.cssText='display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:10px';
+    topRow.innerHTML=`
+      <span style="font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:5px">📅 Entrega
+        <input value="${m.when}" onchange="updateMilestone('${m.id}','when',this.value)"
+          style="width:90px;border:1px solid var(--border);background:#fff;font:inherit;color:var(--ink);outline:none;border-radius:6px;padding:3px 7px;font-size:11px"
+          onfocus="this.style.borderColor='var(--brand)'" onblur="this.style.borderColor='var(--border)'">
+      </span>
+      <span style="font-size:11px;color:var(--text-muted)">📌 ${m.phase}</span>
+      <span style="font-size:11px;color:var(--text-muted)">👤 ${m.responsable||'—'}</span>
+      <div style="display:flex;gap:3px;align-items:center">
+        ${[1,2,3,4,5].map(i=>`<div style="width:14px;height:4px;border-radius:2px;background:${i<=m.impact?pc.dot:'#e2e8f0'}"></div>`).join('')}
+        <span style="font-size:10px;color:var(--text-faint);margin-left:5px">Impacto ${m.impact}/5</span>
+      </div>`;
+    body.appendChild(topRow);
+
+    const desc=document.createElement('div');
+    desc.className='ini-rf-desc';
+    desc.style.marginBottom='10px';
+    desc.innerHTML=`<span style="font-size:10px;font-weight:700;color:var(--text-faint);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:4px">⚡ Fricción actual</span>${m.friction}<br><span style="font-size:10px;font-weight:700;color:var(--text-faint);text-transform:uppercase;letter-spacing:.08em;display:block;margin:8px 0 3px">→ Impacto al resolver</span>${m.impactDesc}`;
+    body.appendChild(desc);
+
+    // tasks
+    const ts=document.createElement('div');
+    ts.className='ini-tasks';
+    const thd=document.createElement('div');
+    thd.className='ini-tasks-hd';
+    thd.innerHTML=`✔ Tareas${total>0?' ('+done+'/'+total+' · '+pct+'%)':''}`;
+    ts.appendChild(thd);
+
+    if(total>0){
+      const pb=document.createElement('div');
+      pb.style.cssText='height:4px;background:var(--border-soft);border-radius:4px;overflow:hidden;margin-bottom:10px;max-width:240px';
+      pb.innerHTML=`<div style="height:100%;width:${pct}%;background:${pctColor};border-radius:4px;transition:width .3s"></div>`;
+      ts.appendChild(pb);
+    }
+
+    m.tasks.forEach((t,i)=>{
+      const sc2=STATUS_CONFIG[t.status]||STATUS_CONFIG['Pendiente'];
+      const dotColor={'Hecho':'#22c55e','En progreso':'#3b5bdb','Bloqueado':'#ef4444','Pendiente':'#cbd5e1'}[t.status]||'#cbd5e1';
+      const row=document.createElement('div');
+      row.className='ini-task-row';
+      row.setAttribute('draggable','true');
+      row.ondragstart=e=>{e.stopPropagation();onTaskDragStart(e,m.id,i);};
+      row.ondragover=e=>{e.stopPropagation();onTaskDragOver(e,m.id,i);};
+      row.ondragleave=e=>{e.stopPropagation();onTaskDragLeave(e);};
+      row.ondrop=e=>{e.stopPropagation();onTaskDrop(e,m.id,i);saveState();_buildHitosGroups();};
+      row.ondragend=e=>{e.stopPropagation();onTaskDragEnd(e);};
+      const handle=document.createElement('span');
+      handle.className='task-drag-handle';handle.title='Reordenar';handle.textContent='⠿';
+      const dot=document.createElement('div');
+      dot.className='ini-task-dot';dot.style.background=dotColor;
+      const txt=document.createElement('span');
+      txt.className='ini-task-text';txt.textContent=t.text;
+      const sel=document.createElement('select');
+      sel.className='ini-task-sel';sel.style.background=sc2.bg;sel.style.color=sc2.text;
+      STATUSES.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;if(s===t.status)o.selected=true;sel.appendChild(o);});
+      sel.onchange=e=>{m.tasks[i].status=e.target.value;saveState();_buildHitosGroups();};
+      const del=document.createElement('button');
+      del.className='ini-task-del';del.textContent='✕';
+      del.onclick=()=>{m.tasks.splice(i,1);saveState();_buildHitosGroups();};
+      row.appendChild(handle);row.appendChild(dot);row.appendChild(txt);row.appendChild(sel);row.appendChild(del);
+      ts.appendChild(row);
+    });
+
+    const addRow=document.createElement('div');
+    addRow.className='ini-task-add-row';
+    const inp=document.createElement('input');
+    inp.className='ini-task-add-input';inp.id=key;inp.placeholder='Nueva tarea…';inp.type='text';
+    inp.onkeydown=e=>{if(e.key==='Enter'&&inp.value.trim()){m.tasks.push({id:'t'+Date.now(),text:inp.value.trim(),status:'Pendiente'});saveState();_buildHitosGroups();}};
+    const btn=document.createElement('button');
+    btn.className='ini-task-add-btn';btn.textContent='＋ Agregar';
+    btn.onclick=()=>{if(inp.value.trim()){m.tasks.push({id:'t'+Date.now(),text:inp.value.trim(),status:'Pendiente'});saveState();_buildHitosGroups();}};
+    addRow.appendChild(inp);addRow.appendChild(btn);
+    ts.appendChild(addRow);
+    body.appendChild(ts);
+    card.appendChild(body);
+  }
+  return card;
+}
+
+// ── MODAL: NUEVO FRENTE ──
+function _showNewFrenteModal(){
+  _closeModal();
+  const ov=document.createElement('div');
+  ov.id='hitos-modal';
+  ov.style.cssText='position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:9998;display:flex;align-items:center;justify-content:center';
+  ov.onclick=e=>{if(e.target===ov)_closeModal();};
+  const box=document.createElement('div');
+  box.style.cssText='background:#fff;border-radius:14px;padding:24px;width:360px;box-shadow:0 12px 40px rgba(15,23,42,.18)';
+  box.innerHTML=`
+    <div style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:16px">Nuevo frente de trabajo</div>
+    <label style="font-size:12px;color:#5b6677;display:block;margin-bottom:4px">Nombre del frente *</label>
+    <input id="nf-name" type="text" placeholder="ej. Backend Core" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:8px 12px;font-size:13px;outline:none;margin-bottom:12px;font-family:inherit">
+    <label style="font-size:12px;color:#5b6677;display:block;margin-bottom:4px">Descripción / equipo responsable</label>
+    <input id="nf-frente" type="text" placeholder="ej. Equipo de backend" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:8px 12px;font-size:13px;outline:none;margin-bottom:12px;font-family:inherit">
+    <label style="font-size:12px;color:#5b6677;display:block;margin-bottom:6px">Color</label>
+    <div style="display:flex;gap:8px;margin-bottom:18px" id="nf-colors">
+      ${['blue','purple','teal','amber','gray'].map(col=>`<button data-col="${col}" onclick="document.querySelectorAll('#nf-colors button').forEach(b=>b.style.outline='none');this.style.outline='2px solid ${_gc(col).mid}'" style="width:26px;height:26px;border-radius:50%;border:none;cursor:pointer;background:${_gc(col).mid}"></button>`).join('')}
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button onclick="_closeModal()" style="border:1px solid #e4e7ee;background:#fff;color:#5b6677;border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;font-family:inherit">Cancelar</button>
+      <button onclick="_createFrente()" style="border:none;background:#3b5bdb;color:#fff;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Crear frente</button>
+    </div>`;
+  ov.appendChild(box);
+  document.body.appendChild(ov);
+  document.getElementById('nf-name').focus();
+}
+function _createFrente(){
+  const name=document.getElementById('nf-name').value.trim();
+  if(!name){ alert('El nombre es obligatorio'); return; }
+  const frente=document.getElementById('nf-frente').value.trim()||name;
+  const selected=document.querySelector('#nf-colors button[style*="outline: 2px"]')||document.querySelector('#nf-colors button');
+  const color=selected?selected.getAttribute('data-col'):'gray';
+  const id='fr-'+Date.now();
+  FRENTE_GROUPS.push({id,name,num:'Frente de trabajo',color,frente,fixed:false});
+  hitosGrpOpen[id]=true;
+  _saveFrentesState();
+  _closeModal();
+  _buildHitosHeader();
+  _buildHitosGroups();
+}
+
+// ── MODAL: NUEVO RF ──
+function _showNewRfModal(defaultGroupId){
+  _closeModal();
+  const ov=document.createElement('div');
+  ov.id='hitos-modal';
+  ov.style.cssText='position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:9998;display:flex;align-items:center;justify-content:center;padding:20px';
+  ov.onclick=e=>{if(e.target===ov)_closeModal();};
+  const allG=_allGroups();
+  const box=document.createElement('div');
+  box.style.cssText='background:#fff;border-radius:14px;padding:24px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 12px 40px rgba(15,23,42,.18)';
+  box.innerHTML=`
+    <div style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:18px">Nuevo requerimiento funcional</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div>
+        <label style="font-size:11px;color:#5b6677;display:block;margin-bottom:3px">Código RF *</label>
+        <input id="nr-code" placeholder="RF 2.22" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:7px 10px;font-size:13px;outline:none;font-family:'JetBrains Mono',monospace">
+      </div>
+      <div>
+        <label style="font-size:11px;color:#5b6677;display:block;margin-bottom:3px">Prioridad *</label>
+        <select id="nr-pri" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:7px 10px;font-size:13px;outline:none;font-family:inherit">
+          <option>Crítica</option><option selected>Alta</option><option>Media</option><option>Baja</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin-bottom:12px">
+      <label style="font-size:11px;color:#5b6677;display:block;margin-bottom:3px">Nombre / hito de negocio *</label>
+      <input id="nr-name" placeholder="Descripción corta del RF" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:7px 10px;font-size:13px;outline:none;font-family:inherit">
+    </div>
+    <div style="margin-bottom:12px">
+      <label style="font-size:11px;color:#5b6677;display:block;margin-bottom:3px">Fricción actual que resuelve</label>
+      <input id="nr-friction" placeholder="¿Qué problema existe hoy?" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:7px 10px;font-size:13px;outline:none;font-family:inherit">
+    </div>
+    <div style="margin-bottom:12px">
+      <label style="font-size:11px;color:#5b6677;display:block;margin-bottom:3px">Descripción del impacto</label>
+      <input id="nr-impact-desc" placeholder="¿Qué mejora al resolverse?" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:7px 10px;font-size:13px;outline:none;font-family:inherit">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
+      <div>
+        <label style="font-size:11px;color:#5b6677;display:block;margin-bottom:3px">Fase</label>
+        <select id="nr-phase" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:7px 10px;font-size:12px;outline:none;font-family:inherit">
+          <option>Análisis</option><option selected>Ejecución</option><option>Estabilización</option><option>Cierre</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:11px;color:#5b6677;display:block;margin-bottom:3px">Fecha estimada</label>
+        <input id="nr-when" placeholder="~Jul 2026" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:7px 10px;font-size:12px;outline:none;font-family:inherit">
+      </div>
+      <div>
+        <label style="font-size:11px;color:#5b6677;display:block;margin-bottom:3px">Impacto (1–5)</label>
+        <select id="nr-impact" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:7px 10px;font-size:12px;outline:none;font-family:inherit">
+          <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
+      <div>
+        <label style="font-size:11px;color:#5b6677;display:block;margin-bottom:3px">Responsable</label>
+        <input id="nr-resp" placeholder="ej. Célula Digi" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:7px 10px;font-size:12px;outline:none;font-family:inherit">
+      </div>
+      <div>
+        <label style="font-size:11px;color:#5b6677;display:block;margin-bottom:3px">Asignar a grupo</label>
+        <select id="nr-group" style="width:100%;border:1px solid #e4e7ee;border-radius:8px;padding:7px 10px;font-size:12px;outline:none;font-family:inherit">
+          ${allG.map(g=>`<option value="${g.id}" ${g.id===defaultGroupId?'selected':''}>${g.fixed?g.id+' · ':''} ${g.name}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button onclick="_closeModal()" style="border:1px solid #e4e7ee;background:#fff;color:#5b6677;border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;font-family:inherit">Cancelar</button>
+      <button onclick="_createRF()" style="border:none;background:#3b5bdb;color:#fff;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Crear RF</button>
+    </div>`;
+  ov.appendChild(box);
+  document.body.appendChild(ov);
+  document.getElementById('nr-code').focus();
+}
+function _createRF(){
+  const code=document.getElementById('nr-code').value.trim();
+  const name=document.getElementById('nr-name').value.trim();
+  if(!code||!name){ alert('Código y nombre son obligatorios'); return; }
+  const newRF={
+    id:'m'+Date.now(),
+    rf:code,
+    name,
+    friction:document.getElementById('nr-friction').value.trim()||'—',
+    impactDesc:document.getElementById('nr-impact-desc').value.trim()||'—',
+    phase:document.getElementById('nr-phase').value,
+    when:document.getElementById('nr-when').value.trim()||'Por definir',
+    impact:parseInt(document.getElementById('nr-impact').value)||3,
+    priority:document.getElementById('nr-pri').value,
+    responsable:document.getElementById('nr-resp').value.trim()||'Sin asignar',
+    status:'Pendiente',
+    groupId:document.getElementById('nr-group').value,
+    tasks:[],
+  };
+  MILESTONES.push(newRF);
+  hitosRfOpen[newRF.id]=true;
+  hitosGrpOpen[newRF.groupId]=true;
+  saveState();
+  _closeModal();
   renderMilestones();
+}
+
+function _closeModal(){
+  const el=document.getElementById('hitos-modal');
+  if(el) el.remove();
+}
+
+// persist FRENTE_GROUPS in Supabase alongside MILESTONES
+function _saveFrentesState(){
+  // included in next saveState call via the extended payload
   saveState();
 }
 
@@ -1033,10 +1601,57 @@ function renderJourney(){
 }
 function selectStep(idx){selectedStep=(selectedStep===idx)?null:idx;renderJourney();}
 
+// ════════════════════════════════
+// INICIATIVAS
+// ════════════════════════════════
+const INI_COLORS = {
+  purple:{bg:'#EEEDFE',bd:'#AFA9EC',tx:'#3C3489',mid:'#534AB7'},
+  teal:  {bg:'#E1F5EE',bd:'#5DCAA5',tx:'#085041',mid:'#0F6E56'},
+  amber: {bg:'#FAEEDA',bd:'#EF9F27',tx:'#633806',mid:'#854F0B'},
+  blue:  {bg:'#E6F1FB',bd:'#85B7EB',tx:'#0C447C',mid:'#185FA5'},
+};
+
+// ── ESTADO DINÁMICO DEL PROYECTO ──
+function updateProjectStatus(){
+  const badge = document.getElementById('project-status-badge');
+  if(!badge) return;
+
+  const totalRF  = MILESTONES.length;
+  const totalTasks = MILESTONES.reduce((s,m)=>s+(m.tasks||[]).length, 0);
+  const doneTasks  = MILESTONES.reduce((s,m)=>s+(m.tasks||[]).filter(t=>t.status==='Hecho').length, 0);
+  const inProgRF   = MILESTONES.some(m=>m.status==='En progreso' || (m.tasks||[]).some(t=>t.status==='En progreso'||t.status==='Hecho'));
+  const allDone    = totalRF>0 && MILESTONES.every(m=>m.status==='Hecho');
+  const allTasksDone = totalTasks>0 && doneTasks===totalTasks;
+
+  // Update KPI pills
+  const crit = MILESTONES.filter(m=>m.priority==='Crítica').length;
+  const alta = MILESTONES.filter(m=>m.priority==='Alta').length;
+  const elRf   = document.getElementById('kpi-rf');
+  const elCrit = document.getElementById('kpi-crit');
+  const elAlta = document.getElementById('kpi-alta');
+  if(elRf)   elRf.textContent   = totalRF;
+  if(elCrit) elCrit.textContent = crit;
+  if(elAlta) elAlta.textContent = alta;
+
+  // Determine status
+  let icon, label, bg, color, border;
+  if(allDone || allTasksDone){
+    icon='✅'; label='Cerrado'; bg='#dcfce7'; color='#15803d'; border='#bbf7d0';
+  } else if(inProgRF){
+    icon='🔄'; label='En progreso'; bg='#eef2ff'; color='#3b5bdb'; border='#c7d2fe';
+  } else {
+    icon='⏳'; label='Pendiente'; bg='#f1f5f9'; color='#475569'; border='#cbd5e1';
+  }
+
+  badge.style.cssText=`background:${bg};color:${color};font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:.04em;border:1px solid ${border};display:inline-flex;align-items:center;gap:6px;transition:all .3s`;
+  badge.innerHTML=`${icon} ${label}`;
+}
+
 // ── ARRANQUE ──
 function _renderAll(){
   renderPhases(); render360(); renderJourney();
   if(document.getElementById('milestones-container')&&document.getElementById('sub-hitos').style.display!=='none') renderMilestones();
+  updateProjectStatus();
 }
 _renderAll();
 (async function(){
