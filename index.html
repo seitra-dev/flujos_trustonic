@@ -144,11 +144,11 @@
   .task-add-btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;transition:opacity .15s}
   .task-add-btn:hover{opacity:.88}
 
-  .summary-strip{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 22px;display:flex;gap:28px;flex-wrap:wrap;margin-top:20px;box-shadow:var(--shadow-sm);align-items:center}
+  .summary-strip{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--r-sm);padding:8px 16px;display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;align-items:center}
   .summary-item{text-align:center}
-  .summary-count{font-size:24px;font-weight:800;font-family:'JetBrains Mono',monospace;line-height:1}
-  .summary-label{font-size:11px;color:var(--text-muted);margin-top:4px;font-weight:600}
-  .summary-divider{border-left:1px solid var(--border);padding-left:28px}
+  .summary-count{font-size:15px;font-weight:700;font-family:'JetBrains Mono',monospace;line-height:1}
+  .summary-label{font-size:10px;color:var(--text-faint);margin-top:2px;font-weight:500}
+  .summary-divider{border-left:1px solid var(--border-soft);padding-left:16px}
 
   .journey-scroll{overflow-x:auto;padding:8px 4px 12px}
   .journey-track{display:flex;gap:0;min-width:max-content;align-items:flex-start}
@@ -319,7 +319,8 @@
   </div>
   <div id="sub-hitos" style="display:none">
     <div id="milestones-summary" class="summary-strip"></div>
-    <div id="milestones-container" style="margin-top:16px"></div>
+    <div id="tl-filterbar" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px;margin-bottom:4px"></div>
+    <div id="milestones-container" style="margin-top:8px"></div>
     <div id="hitos-ini-wrap" style="margin-top:24px">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border)">
         <div style="font-size:13px;font-weight:700;color:var(--ink)">Requerimientos por Iniciativa y Frente</div>
@@ -804,15 +805,115 @@ function onTaskDragEnd(e){
 const TL_MONTHS=[{key:'May26',label:'May',year:'2026'},{key:'Jun26',label:'Jun',year:'2026'},{key:'Jul26',label:'Jul',year:'2026'},{key:'Ago26',label:'Ago',year:'2026'},{key:'Sep26',label:'Sep',year:'2026'}];
 function whenToMonth(when){if(when.includes('May'))return'May26';if(when.includes('Jun'))return'Jun26';if(when.includes('Jul'))return'Jul26';if(when.includes('Ago'))return'Ago26';return'Sep26';}
 
-function renderMilestoneTimeline(){
+let tlFilter = 'all'; // 'all' | group id
+
+function _buildTlFilterBar(){
+  const bar = document.getElementById('tl-filterbar');
+  if(!bar) return;
+  bar.innerHTML = '';
+  _ensureGroupIds();
+  const groups = _allGroups().filter(g => MILESTONES.some(m => m.groupId === g.id));
+  const activeGroup = groups.find(g => g.id === tlFilter);
+  const c = activeGroup ? _gc(activeGroup.color||'gray') : null;
+
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:relative;display:inline-block';
+
+  const trigger = document.createElement('button');
+  trigger.style.cssText = 'display:flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:8px;padding:6px 12px;background:var(--surface);cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;color:var(--text);transition:border-color .15s;min-width:200px;justify-content:space-between';
+  trigger.onmouseover = () => trigger.style.borderColor = '#cbd5e1';
+  trigger.onmouseout  = () => trigger.style.borderColor = 'var(--border)';
+
+  const trigLabel = document.createElement('span');
+  trigLabel.style.cssText = 'display:flex;align-items:center;gap:7px';
+  if(c && activeGroup){
+    trigLabel.innerHTML = `<span style="width:8px;height:8px;border-radius:50%;background:${c.mid};flex-shrink:0"></span>${activeGroup.fixed ? activeGroup.id+' · '+activeGroup.name : activeGroup.name}`;
+  } else {
+    trigLabel.innerHTML = '<span style="width:8px;height:8px;border-radius:50%;background:#94a3b8;flex-shrink:0"></span>Todos los grupos';
+  }
+  const arrow = document.createElement('span');
+  arrow.textContent = '▾';
+  arrow.style.cssText = 'font-size:11px;color:var(--text-faint);margin-left:4px;transition:transform .15s';
+  trigger.appendChild(trigLabel);
+  trigger.appendChild(arrow);
+
+  const panel = document.createElement('div');
+  panel.style.cssText = 'display:none;position:absolute;top:calc(100% + 4px);left:0;min-width:260px;background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(15,23,42,.10);z-index:200;overflow:hidden;padding:4px 0';
+
+  const closeDropdown = (e) => {
+    if(!wrap.contains(e.target)){ panel.style.display='none'; arrow.style.transform=''; document.removeEventListener('click', closeDropdown); }
+  };
+  trigger.onclick = (e) => {
+    e.stopPropagation();
+    const isOpen = panel.style.display === 'block';
+    panel.style.display = isOpen ? 'none' : 'block';
+    arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+    if(!isOpen) setTimeout(() => document.addEventListener('click', closeDropdown), 0);
+  };
+
+  const makeOpt = (id, label, colorMid, count) => {
+    const opt = document.createElement('div');
+    const isA = tlFilter === id;
+    opt.style.cssText = `display:flex;align-items:center;gap:9px;padding:8px 14px;cursor:pointer;font-size:12px;font-weight:${isA?'700':'400'};color:var(--ink);background:${isA?'var(--surface-2)':'transparent'};transition:background .12s`;
+    opt.onmouseover = () => { if(!isA) opt.style.background = 'var(--surface-2)'; };
+    opt.onmouseout  = () => { if(!isA) opt.style.background = 'transparent'; };
+    opt.innerHTML = `<span style="width:8px;height:8px;border-radius:50%;background:${colorMid};flex-shrink:0"></span><span style="flex:1">${label}</span><span style="font-size:10px;color:var(--text-faint);font-family:'JetBrains Mono',monospace">${count} RF</span>${isA?'<span style="color:var(--brand);font-size:12px;margin-left:4px">✓</span>':''}`;
+    opt.onclick = () => { tlFilter = id; panel.style.display='none'; arrow.style.transform=''; _buildTlFilterBar(); _renderTimeline(); };
+    return opt;
+  };
+  const makeDivider = (label) => {
+    const d = document.createElement('div');
+    d.style.cssText = 'padding:7px 14px 3px;font-size:9px;font-weight:700;color:var(--text-faint);text-transform:uppercase;letter-spacing:.1em;border-top:1px solid var(--border-soft);margin-top:2px';
+    d.textContent = label;
+    return d;
+  };
+
+  panel.appendChild(makeOpt('all','Todos los grupos','#94a3b8', MILESTONES.length));
+  const fijos   = groups.filter(g => g.fixed);
+  const frentes = groups.filter(g => !g.fixed);
+  if(fijos.length){
+    panel.appendChild(makeDivider('Iniciativas formales'));
+    fijos.forEach(g => { const gc=_gc(g.color||'gray'); panel.appendChild(makeOpt(g.id, g.id+' · '+g.name, gc.mid, MILESTONES.filter(m=>m.groupId===g.id).length)); });
+  }
+  if(frentes.length){
+    panel.appendChild(makeDivider('Frentes de trabajo'));
+    frentes.forEach(g => { const gc=_gc(g.color||'gray'); panel.appendChild(makeOpt(g.id, g.name, gc.mid, MILESTONES.filter(m=>m.groupId===g.id).length)); });
+  }
+
+  wrap.appendChild(trigger);
+  wrap.appendChild(panel);
+  bar.appendChild(wrap);
+}
+
+function _renderTimeline(){
+  const container = document.getElementById('milestones-container');
+  if(!container) return;
+  // Filter milestones by selected group
+  const filtered = tlFilter === 'all'
+    ? MILESTONES
+    : MILESTONES.filter(m => m.groupId === tlFilter);
+  container.innerHTML = renderMilestoneTimeline(filtered);
+}
+
+function renderMilestoneTimeline(milestones){
+  milestones = milestones || MILESTONES;
   const byMonth={};
   TL_MONTHS.forEach(m=>byMonth[m.key]=[]);
-  MILESTONES.forEach(m=>{const mk=whenToMonth(m.when);if(byMonth[mk])byMonth[mk].push(m);});
+  milestones.forEach(m=>{const mk=whenToMonth(m.when);if(byMonth[mk])byMonth[mk].push(m);});
   const ST_ICON={"Hecho":"✅","En progreso":"🔄","Bloqueado":"🔴","Pendiente":"⏳"};
+  const activeGroup = tlFilter !== 'all' ? _allGroups().find(g=>g.id===tlFilter) : null;
+  const groupLabel = activeGroup
+    ? `<span style="background:${_gc(activeGroup.color||'gray').bg};color:${_gc(activeGroup.color||'gray').mid};border:1px solid ${_gc(activeGroup.color||'gray').bd};font-size:10px;font-weight:700;padding:2px 10px;border-radius:20px;margin-left:8px">${activeGroup.fixed?activeGroup.id+' · ':''} ${activeGroup.name}</span>`
+    : '';
+  const total = milestones.length;
   return`<div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.04);overflow-x:auto">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap">
-      <div style="font-size:11px;font-weight:700;color:#0f172a;text-transform:uppercase;letter-spacing:.1em">📅 Línea de Tiempo · Mayo → Sep 2026</div>
-      <div style="display:flex;align-items:center;gap:6px;background:#f1f3f7;border:1px solid #e4e7ee;border-radius:8px;padding:4px 10px"><span style="font-size:13px">⚠️</span><span style="font-size:10px;font-weight:700;color:#5b6677">FECHAS PROYECTADAS — pendiente estimación formal</span></div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+        <div style="font-size:11px;font-weight:700;color:#0f172a;text-transform:uppercase;letter-spacing:.1em">📅 Línea de Tiempo · Mayo → Sep 2026</div>
+        ${groupLabel}
+        <span style="font-size:10px;color:var(--text-faint);font-family:'JetBrains Mono',monospace">${total} RF</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;background:#f1f3f7;border:1px solid #e4e7ee;border-radius:8px;padding:4px 10px;margin-left:auto"><span style="font-size:13px">⚠️</span><span style="font-size:10px;font-weight:700;color:#5b6677">FECHAS PROYECTADAS — pendiente estimación formal</span></div>
     </div>
     <div style="display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
       <span style="font-size:10px;color:#64748b;font-weight:700">Prioridad:</span>
@@ -820,17 +921,32 @@ function renderMilestoneTimeline(){
     </div>
     <div style="position:relative;min-width:600px">
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
-        ${TL_MONTHS.map(mo=>`<div>
-          <div style="text-align:center;margin-bottom:10px"><div style="font-size:11px;font-weight:800;color:#0f172a">${mo.label}</div><div style="font-size:9px;color:#94a3b8">${mo.year}</div></div>
-          <div style="height:2px;background:#e2e8f0;border-radius:2px;margin-bottom:10px;position:relative"><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:#cbd5e1;border:2px solid #fff;box-shadow:0 0 0 1px #cbd5e1"></div></div>
-          <div style="display:flex;flex-direction:column;gap:6px;min-height:40px">
-            ${byMonth[mo.key].map(m=>{const pc=PRI_CONFIG[m.priority]||PRI_CONFIG['Media'];const si=ST_ICON[m.status]||'⏳';return`<div style="background:${pc.bg};border:1px solid ${pc.dot}55;border-left:3px solid ${pc.dot};border-radius:7px;padding:7px 9px" title="${m.name}">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;gap:4px"><span style="background:#0f172a;color:#fff;font-size:7px;font-weight:800;padding:1px 5px;border-radius:4px">${m.rf}</span><span style="font-size:9px;font-weight:700;color:${pc.text}">${pc.emoji}</span><span>${si}</span></div>
-              <div style="font-size:10px;font-weight:600;color:#0f172a;line-height:1.3">${m.name}</div>
-            </div>`;}).join('')}
-            ${byMonth[mo.key].length===0?`<div style="height:36px;border:1.5px dashed #f1f5f9;border-radius:7px;display:flex;align-items:center;justify-content:center"><span style="font-size:10px;color:#e2e8f0">—</span></div>`:''}
-          </div>
-        </div>`).join('')}
+        ${TL_MONTHS.map(mo=>{
+          const items = byMonth[mo.key];
+          return`<div>
+            <div style="text-align:center;margin-bottom:10px"><div style="font-size:11px;font-weight:800;color:#0f172a">${mo.label}</div><div style="font-size:9px;color:#94a3b8">${mo.year}</div></div>
+            <div style="height:2px;background:#e2e8f0;border-radius:2px;margin-bottom:10px;position:relative"><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:#cbd5e1;border:2px solid #fff;box-shadow:0 0 0 1px #cbd5e1"></div></div>
+            <div style="display:flex;flex-direction:column;gap:6px;min-height:40px">
+              ${items.map(m=>{
+                const pc=PRI_CONFIG[m.priority]||PRI_CONFIG['Media'];
+                const si=ST_ICON[m.status]||'⏳';
+                // color badge by group
+                const grp=_allGroups().find(g=>g.id===m.groupId);
+                const gc=grp?_gc(grp.color||'gray'):null;
+                const badgeBg=gc?gc.mid:'#0f172a';
+                return`<div style="background:${pc.bg};border:1px solid ${pc.dot}55;border-left:3px solid ${pc.dot};border-radius:7px;padding:7px 9px" title="${m.name}">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;gap:4px">
+                    <span style="background:${badgeBg};color:#fff;font-size:7px;font-weight:800;padding:1px 5px;border-radius:4px">${m.rf}</span>
+                    <span style="font-size:9px;font-weight:700;color:${pc.text}">${pc.emoji}</span>
+                    <span>${si}</span>
+                  </div>
+                  <div style="font-size:10px;font-weight:600;color:#0f172a;line-height:1.3">${m.name}</div>
+                </div>`;
+              }).join('')}
+              ${items.length===0?`<div style="height:36px;border:1.5px dashed #f1f5f9;border-radius:7px;display:flex;align-items:center;justify-content:center"><span style="font-size:10px;color:#e2e8f0">—</span></div>`:''}
+            </div>
+          </div>`;
+        }).join('')}
       </div>
     </div>
     <div style="display:flex;gap:12px;margin-top:14px;padding-top:12px;border-top:1px solid #f1f5f9;flex-wrap:wrap">
@@ -840,13 +956,13 @@ function renderMilestoneTimeline(){
 }
 
 function renderMilestones(){
-  const container=document.getElementById('milestones-container');
-  container.innerHTML=renderMilestoneTimeline();
+  _buildTlFilterBar();
+  _renderTimeline();
   const s=document.getElementById('milestones-summary');
   const counts=['Crítica','Alta','Media','Baja'].map(p=>({p,cnt:MILESTONES.filter(m=>m.priority===p).length}));
-  s.innerHTML=counts.map(({p,cnt})=>`<div class="summary-item"><div class="summary-count" style="color:${PRI_CONFIG[p].dot}">${PRI_CONFIG[p].emoji} ${cnt}</div><div class="summary-label">RF ${p}</div></div>`).join('')+
-    `<div class="summary-item summary-divider"><div class="summary-count" style="color:#0f172a">${MILESTONES.length}</div><div class="summary-label">Total RF</div></div>`+
-    `<div style="margin-left:auto;align-self:center;background:#f1f3f7;border:1px solid #e4e7ee;border-radius:8px;padding:6px 14px;display:flex;align-items:center;gap:6px"><span>⚠️</span><span style="font-size:10px;font-weight:700;color:#5b6677">Fechas proyectadas — estimación pendiente</span></div>`;
+  s.innerHTML=counts.map(({p,cnt})=>`<div class="summary-item"><div class="summary-count" style="color:${PRI_CONFIG[p].dot}">${PRI_CONFIG[p].emoji} ${cnt}</div><div class="summary-label">${p}</div></div>`).join('')+
+    `<div class="summary-item summary-divider"><div class="summary-count" style="color:#0f172a">${MILESTONES.length}</div><div class="summary-label">Total</div></div>`+
+    `<div style="margin-left:auto;display:flex;align-items:center;gap:5px"><span style="font-size:11px">⚠️</span><span style="font-size:10px;color:var(--text-faint)">Fechas proyectadas</span></div>`;
   _buildHitosHeader();
   _buildHitosGroups();
 }
